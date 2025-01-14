@@ -20,6 +20,15 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.logo{
+    position: absolute;
+    left: 408px
+     
+}
+
+
+
+
 footer {
     position: absolute;
     left: 50%;
