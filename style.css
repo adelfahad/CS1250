@@ -9,7 +9,7 @@
 :root {
     --linear-grad: linear-gradient(180deg, #1ad639, #c1cad5);
     --grad-clr1: #4b4747;;
-    --grad-clr2: #243B55;
+    --grad-clr2: #1D1616;
 }
 
 body {
@@ -75,7 +75,7 @@ form{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: opx 50px
+    padding: 0px 50px
 }
 h1{
     color:var(--grad-clr1);
