@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styleContact.css">
+    <link href="photo/logo.ico" rel="icon">
+</head>
+<body>
+    <div class="container">
+        <form id="contactForm">
+            <h1>Contact Us Form</h1>
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="mobile" placeholder="Mobile" required>
+            <h4>Type Your Message Here ...</h4>
+            <textarea id="message" required></textarea>
+            <input type="submit" value="Send" id="button">
+        </form>
+    </div>
+
+    <script>
+        // إرسال البيانات باستخدام JavaScript
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const data = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value,
+                message: document.getElementById('message').value,
+            };
+
+            fetch('http://localhost:3000/contact', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+})
+
+            .then(response => response.json())
+            .then(result => {
+                alert('Message sent successfully!');
+                window.location.href = 'HomePage.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error sending your message.');
+            });
+        });
+    </script>
+</body>
+</html>
