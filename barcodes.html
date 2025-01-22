@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate and Save Barcodes</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <h1>Barcode Generator</h1>
+    <div id="barcodeContainer"></div>
+
+    <script>
+        // Number of barcodes to generate
+        const NUMBER_OF_BARCODES = 5; // Change this value to generate more or fewer barcodes
+
+        function generateBarcodes() {
+            const container = document.getElementById('barcodeContainer');
+            container.innerHTML = ""; // Clear previous barcodes
+
+            for (let i = 0; i < NUMBER_OF_BARCODES; i++) {
+                // Generate a unique barcode value
+                const uniqueValue = `BC-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+
+                // Create a canvas element for the barcode
+                const canvas = document.createElement('canvas');
+                JsBarcode(canvas, uniqueValue, {
+                    format: "CODE128",
+                    lineColor: "#000",
+                    width: 2,
+                    height: 100,
+                    displayValue: true
+                });
+
+                // Create a download link for the barcode image
+                const link = document.createElement('a');
+                link.download = `${uniqueValue}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.textContent = `Download Barcode ${i + 1}`;
+
+                // Append the barcode and download link to the container
+                container.appendChild(canvas);
+                container.appendChild(link);
+                container.appendChild(document.createElement('br'));
+            }
+        }
+
+        // Automatically generate barcodes on page load
+        window.onload = generateBarcodes;
+    </script>
+</body>
+</html>

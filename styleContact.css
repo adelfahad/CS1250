@@ -11,7 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("photo/riyadhMetro.jpeg") no-repeat center center/cover; ;
+    background: url("riyadhMetro.jpeg") no-repeat center center/cover; 
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(riyadhMetro.jpeg);
+
 }
 .container form{
     width: 670px;
