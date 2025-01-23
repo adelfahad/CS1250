@@ -1,23 +1,19 @@
-function selectTicket(ticketName, price) {
-    document.getElementById('ticketDetails').textContent = `التذكرة: ${ticketName}`;
-    document.getElementById('ticketPrice').textContent = `السعر: ${price} ريال`;
-    document.getElementById('selectedTicket').style.display = 'block';
-}
-window.onload = () => {
-    const ticketId = 1; // افترض أن رقم التذكرة 1، يمكن تغيير هذا بناءً على التذكرة المطلوبة
+function createTicket(ticketClass, hours) {
+    const ticketData = { class: ticketClass, hours };
 
-    fetch('http://localhost:3000/generate-barcode', {
+    fetch('http://localhost:3000/generate-ticket', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ ticketId })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ticketData),
     })
-    .then(response => response.json())
-    .then(data => {
-        // تحديث الباركود في الصفحة
-        const barcodeElement = document.getElementById('barcode');
-        barcodeElement.textContent = `Barcode: ${data.barcode}`;
-    })
-    .catch(error => console.error('Error:', error));
-};
+        .then(response => response.json())
+        .then(data => {
+            if (data.barcode) {
+                alert(`Ticket created successfully!\nStart: ${data.startTime}\nEnd: ${data.endTime}`);
+                window.location.href = `barcode.html?barcode=${data.barcode}`;
+            } else {
+                alert('Failed to create ticket.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}

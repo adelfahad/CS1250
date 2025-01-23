@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Riyadh metro</title>
-    <link href="photo/Riyadh_metro_logo" rel="icon">
-    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frontend Mentor | QR Code Component</title>
-    <link rel="stylesheet" href="styleBarcode.css" />
-  </head>
-  <body>
-    <div class="banner">
-        <div class="navbar">
-            <img src="Riyadh_metro_logo.png" class="logo">
-            <ul>
-                <li><a href="#">Map</a></li>
-                <li><a href="TicketPage.html">Tickets</a></li>
-                <li><a href="#">announcement</a></li>
-                <li><a href="profilePage.html">Profile</a></li>
-                <li><a href="contact.html">support</a></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket</title>
+</head>
+<body>
+    <h1>Your Ticket</h1>
+    <p id="ticketInfo"></p>
+    <img id="barcodeImage" alt="Barcode">
 
-            </ul>
-        </div>
-    <main class="container">
-      <div class="card">
-        <img src="barcode_2.png" alt="barcode code to visit Frontend Mentor" />
-        <h1>This is your ticket</h1>
-        <p>
-          Scan the barcode to enter The Metro station
-        </p>
-      </div>
-    </main>
-    <script src="/script.js"></script>
-  </body>
+    <script>
+        // استخراج بيانات الباركود من الرابط
+        const urlParams = new URLSearchParams(window.location.search);
+        const barcodeBase64 = urlParams.get('barcodeImage'); // اسم المفتاح من الخادم
+        const price = urlParams.get('price');
+        const ticketClass = urlParams.get('class');
+
+        // التحقق من البيانات وتحديث الصفحة
+        if (barcodeBase64) {
+            // تحديث بيانات التذكرة
+            document.getElementById('ticketInfo').textContent = `Class: ${ticketClass}, Price: SAR ${price}`;
+            // عرض صورة الباركود
+            document.getElementById('barcodeImage').src = `data:image/png;base64,${barcodeBase64}`;
+        } else {
+            console.error('Barcode image is missing!');
+        }
+    </script>
+</body>
 </html>
