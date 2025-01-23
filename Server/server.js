@@ -144,6 +144,35 @@ app.post('/display-ticket', (req, res) => {
         </html>
     `);
 });
+// المسار لصفحة اتصل بنا
+app.get('/contact.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../CS1250', 'contact.html'));  // إرسال contact.html
+});
+
+// المسار للصفحة الرئيسية
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../CS1250', 'index.html'));  // إرسال index.html
+});
+
+// المسار لصفحة عن الموقع
+app.get('/about.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../CS1250', 'about.html'));  // إرسال about.html
+});
+
+// المسار لمعالجة البيانات المرسلة من نموذج الاتصال (حفظ البيانات في قاعدة البيانات)
+app.post('/contact', (req, res) => {
+    const { firstName, lastName, email, mobile, message } = req.body;
+
+    const query = 'INSERT INTO contacts (first_name, last_name, email, mobile, message) VALUES (?, ?, ?, ?, ?)';  // تعديل اسم الجدول هنا
+
+    db.query(query, [firstName, lastName, email, mobile, message], (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            return res.status(500).send('Error saving message');
+        }
+        res.json({ message: 'Message received successfully!' });
+    });
+});
 
 // تشغيل الخادم
 app.listen(3000, () => {
