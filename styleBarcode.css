@@ -1,0 +1,102 @@
+:root {
+    --color-white: hsl(44, 45%, 67%);
+    --color-light-gray: hsl(212, 45%, 89%);
+    --color-blue: hsl(220, 15%, 55%);
+    --color-dark-blue: hsl(218, 44%, 22%);
+  }
+  
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    background-color: var(--color-light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
+  }
+  
+  .card {
+    background-color: var(--color-white);
+    border-radius: 20px;
+    padding: 15px;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background-color: #d0bc84;
+  }
+  
+  .card h1 {
+    font-size: 1.25rem;
+    color: var(--color-dark-blue);
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: var(--color-blue);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+  .banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(riyadhMetro.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li ::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #6fd450;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.logo {
+    width: 130px;
+    cursor: pointer;
+}

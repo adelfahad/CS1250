@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riyadh Metro - Ticket Options</title>
+    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('riyadhMetro.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #FFF;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 15px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar img {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .navbar ul li a:hover {
+            color: #6fd450;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #FFF;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card.first-class {
+            background-color: #d0bc84;
+            color: #FFF;
+        }
+
+        .card.first-class:hover {
+            background-color: #b89d6f;
+        }
+
+        .card.regular {
+            background-color: #6fd450;
+            color: #FFF;
+        }
+
+        .card.regular:hover {
+            background-color: #58a93a;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .card-icon img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <img src="Riyadh_metro_logo.png" alt="Riyadh Metro Logo">
+        <ul>
+            <li><a href="#support">SUPPORT</a></li>
+            <li><a href="#map">MAP</a></li>
+            <li><a href="#tickets">TICKETS</a></li>
+            <li><a href="#announcement">ANNOUNCEMENT</a></li>
+            <li><a href="#profile">PROFILE</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Ticket Options</h1>
+
+        <div class="card-container">
+            <!-- First-class Tickets -->
+            <button class="card first-class" onclick="window.location.href='first_class_2hour.html'">
+                <div class="card-icon">
+                    <img src="ticket-iconGold.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 10</h3>
+                <p>First-class</p>
+                <p>2-hour pass</p>
+            </button>
+
+            <button class="card first-class" onclick="window.location.href='first_class_3days.html'">
+                <div class="card-icon">
+                    <img src="ticket-iconGold.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 50</h3>
+                <p>First-class</p>
+                <p>3-day pass</p>
+            </button>
+
+            <button class="card first-class" onclick="window.location.href='first_class_7days.html'">
+                <div class="card-icon">
+                    <img src="ticket-iconGold.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 100</h3>
+                <p>First-class</p>
+                <p>7-day pass</p>
+            </button>
+
+            <button class="card first-class" onclick="window.location.href='first_class_30days.html'">
+                <div class="card-icon">
+                    <img src="ticket-iconGold.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 350</h3>
+                <p>First-class</p>
+                <p>30-day pass</p>
+            </button>
+
+            <!-- Regular Tickets -->
+            <button class="card regular" onclick="window.location.href='regular_2hour.html'">
+                <div class="card-icon">
+                    <img src="ticket-icon.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 4</h3>
+                <p>Regular class</p>
+                <p>2-hour pass</p>
+            </button>
+
+            <button class="card regular" onclick="window.location.href='regular_3days.html'">
+                <div class="card-icon">
+                    <img src="ticket-icon.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 20</h3>
+                <p>Regular class</p>
+                <p>3-day pass</p>
+            </button>
+
+            <button class="card regular" onclick="window.location.href='regular_7days.html'">
+                <div class="card-icon">
+                    <img src="ticket-icon.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 40</h3>
+                <p>Regular class</p>
+                <p>7-day pass</p>
+            </button>
+
+            <button class="card regular" onclick="window.location.href='regular_30days.html'">
+                <div class="card-icon">
+                    <img src="ticket-icon.png" alt="Ticket Icon">
+                </div>
+                <h3>SAR 140</h3>
+                <p>Regular class</p>
+                <p>30-day pass</p>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
