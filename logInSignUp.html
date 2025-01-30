@@ -35,7 +35,7 @@
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="date" name="birthdate" placeholder="Birthdate" required />
+                    <input type="date" name="birthdate" placeholder="Birthdate"  />
                     <label></label>
                 </div>
                 <div class="infield">
@@ -122,7 +122,7 @@
         });
 
         if (response.ok) {
-            window.location.href = '/';
+            window.location.href = '/profilePage.html';
         } else {
             const error = await response.json();
             alert(error.error);
