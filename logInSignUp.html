@@ -56,7 +56,7 @@
         <div class="form-container sign-in-container">
             <img src="photo/logo.PNG" alt="Logo" class="logo" height="100px" width="100px">
 
-            <form action="#">
+            <form id="loginForm">
                 <h1>Sign in</h1>
                
                 <span>or use your account</span>
@@ -65,11 +65,11 @@
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="password" placeholder="Password" required />
+                    <input type="password" name="password" placeholder="Password" required />
                     <label></label>
                 </div>
                 <a href="#" class="forgot">Forgot your password?</a>
-                <button type="button" onclick="location.href='HomePage.html'">Sign In</button>
+                <button type="submit">Sign In</button
             </form>
         </div>
         <div class="overlay-container" id="overlayCon">
@@ -132,6 +132,33 @@
     }
 });
     </script>
+    <script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+        email: document.querySelector('#loginForm input[name="email"]').value,
+        password: document.querySelector('#loginForm input[name="password"]').value
+    };
 
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+            credentials: 'include' // لإرسال الكوكيز
+        });
+
+        if (response.ok) {
+            window.location.href = '/profilePage.html';
+        } else {
+            const error = await response.text();
+            alert(error || 'Login failed');
+        }
+    } catch (error) {
+        alert('Network error');
+    }
+});
+    </script>
 </body>
 </html>

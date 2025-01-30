@@ -61,7 +61,6 @@ app.post('/signup', async (req, res) => {
                 return res.status(400).json({ error: 'Email is already registered.' });
             }
 
-            // تشفير كلمة المرور
             const hashedPassword = await bcrypt.hash(password, 10);
 
             const query = 'INSERT INTO users (name, email, password, phone, birthdate, gender, address) VALUES (?, ?, ?, ?, ?, ?, ?)';
@@ -87,6 +86,45 @@ app.post('/signup', async (req, res) => {
     }
 });
 
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    const query = 'SELECT * FROM users WHERE email = ?';
+    db.query(query, [email], (err, result) => {
+        if (err) {
+            console.error('Error fetching user:', err);
+            return res.status(500).send('Error during login.');
+        }
+
+        if (result.length > 0) {
+            const user = result[0];
+
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    return res.status(500).send('Error during login.');
+                }
+
+                if (isMatch) {
+                    req.session.user = { id: user.id, email: user.email };
+                    return res.redirect('/profilePage.html');
+                } else {
+                    return res.status(401).send('Invalid credentials.');
+                }
+            });
+        } else {
+            return res.status(401).send('Invalid credentials.');
+        }
+    });
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log('Error destroying session:', err);
+        }
+        res.redirect('/profilePage.html');
+    });
+});
 app.post('/generate-ticket', (req, res) => {
     const { class: ticketClass, price, duration } = req.body;
 
@@ -95,7 +133,7 @@ app.post('/generate-ticket', (req, res) => {
         return res.status(400).json({ error: 'Missing ticket data' });
     }
 
-    const validClasses = ['VIP', 'Normal', 'First-class', 'Regular'];
+    const validClasses = ['VIP', 'Normal', 'First-class'];
     if (!validClasses.includes(ticketClass)) {
         return res.status(400).json({ error: 'Invalid class value' });
     }
@@ -210,7 +248,7 @@ app.post('/contact', (req, res) => {
 });
 app.get('/profile', (req, res) => {
     if (!req.session.user) {
-      return res.redirect('/login');
+        return res.redirect('/login');
     }
   
     // افترض أننا نستخدم البريد الإلكتروني لاسترجاع البيانات
