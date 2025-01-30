@@ -12,7 +12,7 @@
   <body>
     <div class="banner">
         <div class="navbar">
-            <img src="Riyadh_metro_logo.png" class="logo">
+            <img src="photo/Riyadh_metro_logo.png" class="logo">
             <ul>
                 <li><a href="#">Map</a></li>
                 <li><a href="TicketPage.html">Tickets</a></li>
@@ -24,11 +24,9 @@
         </div>
     <main class="container">
       <div class="card">
-        <img id="barcodeImage" src="" alt="Your Ticket Barcode" />
-        <h1>This is your ticket</h1>
-        <p>
-          Scan the barcode to enter The Metro station
-        </p>
+        <h1>Your Ticket</h1>
+        <p>Class: ${ticketClass}, Price: SAR ${price}</p>
+        <img src="data:image/png;base64,${barcodeBase64}" alt="Barcode">
       </div>
     </main>
   </body>

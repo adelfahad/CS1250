@@ -192,30 +192,39 @@ app.post('/display-ticket', (req, res) => {
     }
 
     res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Your Ticket</title>
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 0;
-                    padding: 20px;
-                    text-align: center;
-                }
-                img {
-                    margin-top: 20px;
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Your Ticket</h1>
-            <p>Class: ${ticketClass}, Price: SAR ${price}</p>
-            <img src="data:image/png;base64,${barcodeBase64}" alt="Barcode">
-        </body>
-        </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Riyadh metro</title>
+    <link href="photo/Riyadh_metro_logo" rel="icon">
+    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Mentor | QR Code Component</title>
+    <link rel="stylesheet" href="styleBarcodeR.css" />
+  </head>
+  <body>
+    <div class="banner">
+        <div class="navbar">
+            <img src="photo/Riyadh_metro_logo.png" class="logo">
+            <ul>
+                <li><a href="#">Map</a></li>
+                <li><a href="TicketPage.html">Tickets</a></li>
+                <li><a href="#">announcement</a></li>
+                <li><a href="profilePage.html">Profile</a></li>
+                <li><a href="contact.html">support</a></li>
+
+            </ul>
+        </div>
+    <main class="container">
+      <div class="card">
+        <h1>Your Ticket</h1>
+        <p>Class: ${ticketClass}, Price: SAR ${price}</p>
+        <img src="data:image/png;base64,${barcodeBase64}" alt="Barcode">
+      </div>
+    </main>
+  </body>
+</html>
     `);
 });
 

@@ -38,10 +38,11 @@
     max-width: 300px;
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
+    max-width: 100%;
+    }
   
   .card img {
-    width: 100%;
+    width: 500;
     border-radius: 15px;
     margin-bottom: 20px;
     background-color: #d0bc84;
