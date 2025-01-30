@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket</title>
+</head>
+<body>
+    <h1>Your Ticket</h1>
+    <p id="ticketInfo"></p>
+    <img id="barcodeImage" alt="Barcode">
+
+    <script>
+        // استخراج بيانات الباركود من الرابط
+        const urlParams = new URLSearchParams(window.location.search);
+        const barcodeBase64 = urlParams.get('barcodeImage'); // اسم المفتاح من الخادم
+        const price = urlParams.get('price');
+        const ticketClass = urlParams.get('class');
+
+        // التحقق من البيانات وتحديث الصفحة
+        if (barcodeBase64) {
+            // تحديث بيانات التذكرة
+            document.getElementById('ticketInfo').textContent = `Class: ${ticketClass}, Price: SAR ${price}`;
+            // عرض صورة الباركود
+            document.getElementById('barcodeImage').src = `data:image/png;base64,${barcodeBase64}`;
+        } else {
+            console.error('Barcode image is missing!');
+        }
+    </script>
+</body>
+</html>

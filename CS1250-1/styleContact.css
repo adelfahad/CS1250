@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    width: 85%;
+    margin: 35px auto 0; 
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    position: absolute; 
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+.logo {
+    width: 130px;
+    cursor: pointer;
+}
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li ::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #6fd450;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li :hover:after {
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 120px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), 
+                url("riyadhMetro.jpeg") no-repeat center center/cover;
+}
+.container form{
+    width: 670px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0);
+    border-radius: 15px;
+    background: rgb(255, 255, 255,0.1);
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap; 
+}
+.container form h1{
+    color: #fff;
+    font-weight: 500;
+    margin-top: 20px;
+    width: 500px;
+    text-align: center;
+}
+.container form input{
+    width: 290px;
+    height: 40px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background: none;
+    border-bottom: 2px solid #fff;
+}
+.container form input::placeholder{
+    color: #ddd;
+}
+.container form #lastName,
+.container form #mobile{
+    margin-left: 20px;
+}
+.container form h4{
+    color:#fff;
+    font-weight: 300;
+    width: 600px;
+    margin-top: 20px;
+}
+.container form textarea{
+    background: none;
+    border:none;
+    border-bottom: 2px solid #fff;
+    color:#fff;
+    font-weight: 200;
+    font-size:15px;
+    padding: 10px;
+    outline: none;
+    min-height: 600px;
+    min-width: 600px;
+    min-height: 80px;
+    max-height: 80px;
+}
+
+
+textarea::-webkit-scrollbar{
+    width: 1em;
+}
+textarea::-webkit-scrollbar-thumb{
+    background-color: rgba(194,194,194,0.713);
+}
+.container form #button{
+    border: none;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #333;
+    width: 100px;
+    padding: 0;
+    margin-right: 500px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+}
+.container form #button:hover{
+   opacity: 0.7;  
+}
