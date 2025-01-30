@@ -133,7 +133,7 @@ app.post('/generate-ticket', (req, res) => {
         return res.status(400).json({ error: 'Missing ticket data' });
     }
 
-    const validClasses = ['VIP', 'Normal', 'First-class'];
+    const validClasses = ['VIP', 'Normal', 'First-class',"Regular"];
     if (!validClasses.includes(ticketClass)) {
         return res.status(400).json({ error: 'Invalid class value' });
     }
