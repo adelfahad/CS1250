@@ -105,10 +105,21 @@
             font-size: 16px;
             margin: 5px 0;
         }
-    </style>
-</head>
-<body>
-    <div class="navbar">
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .toggle-label input {
+            margin-right: 10px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
         <img src="/photo/Riyadh_metro_logo.png" alt="logo">
         <ul>
             <li><a href="contact.html">SUPPORT</a></li>
@@ -117,13 +128,14 @@
             <li><a href="#announcement">ANNOUNCEMENT</a></li>
             <li><a href="profilePage.html">PROFILE</a></li>
         </ul>
-    </div>
+        </div>
 
-    <div class="container">
+        <div class="container">
         <h1>Ticket Options</h1>
         
-        <h2>First-class:</h2>
-        <div class="card-container">
+        <div id="page1" class="page">
+            <h2>First-class:</h2>
+            <div class="card-container">
             <button class="card" onclick="createTicket('First-class', 10, '2-hour pass')">
                 <h3>SAR 10</h3>
                 <p>2-hour pass</p>
@@ -140,10 +152,10 @@
                 <h3>SAR 350</h3>
                 <p>30-day pass</p>
             </button>
-        </div>
-
-        <h2>Regular:</h2>
-        <div class="card-container">
+            </div>
+        
+            <h2>Regular:</h2>
+            <div class="card-container">
             <button class="card regular" onclick="createTicket('Regular', 4, '2-hour pass')">
                 <h3>SAR 4</h3>
                 <p>2-hour pass</p>
@@ -160,9 +172,74 @@
                 <h3>SAR 140</h3>
                 <p>30-day pass</p>
             </button>
+            </div>
+        </div>
+        
+        <div id="page2" class="page" style="display: none;">
+            <h2>First-class:</h2>
+            <div class="card-container">
+            <button class="card" onclick="createTicket('First-class', 5, '2-hour pass')">
+                <h3>SAR 5</h3>
+                <p>2-hour pass</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 25, '3-day pass')">
+                <h3>SAR 25</h3>
+                <p>3-day pass</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 50, '7-day pass')">
+                <h3>SAR 50</h3>
+                <p>7-day pass</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 175, '30-day pass')">
+                <h3>SAR 175</h3>
+                <p>30-day pass</p>
+            </button>
+            </div>
+        
+            <h2>Regular:</h2>
+            <div class="card-container">
+            <button class="card regular" onclick="createTicket('Regular', 2, '2-hour pass')">
+                <h3>SAR 2</h3>
+                <p>2-hour pass</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 10, '3-day pass')">
+                <h3>SAR 10</h3>
+                <p>3-day pass</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 20, '7-day pass')">
+                <h3>SAR 20</h3>
+                <p>7-day pass</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 70, '30-day pass')">
+                <h3>SAR 70</h3>
+                <p>30-day pass</p>
+            </button>
+            </div>
+        </div>
+        
+        <label class="toggle-label">
+            <input type="checkbox" id="toggleCheckbox" onclick="togglePage()">
+            Older than 65 or Student
+        </label>
+        <div style="margin-top: 20px;">
+            <label>
         </div>
     </div>
-
+    
+    <script>
+        function togglePage() {
+            let page1 = document.getElementById("page1");
+            let page2 = document.getElementById("page2");
+    
+            if (page1.style.display === "none") {
+                page1.style.display = "block";
+                page2.style.display = "none";
+            } else {
+                page1.style.display = "none";
+                page2.style.display = "block";
+            }
+        }
+    </script>
     <script>
 function createTicket(ticketClass, price, duration) {
     const ticketData = { class: ticketClass, price: price, duration: duration };

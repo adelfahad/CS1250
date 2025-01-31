@@ -242,6 +242,9 @@ app.get('/about.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../../CS1250', 'about.html'));
 });
 
+app.get('Stations.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../CS1250', 'Stations.html'));
+});
 
 app.post('/contact', (req, res) => {
     const { firstName, lastName, email, mobile, message } = req.body;
