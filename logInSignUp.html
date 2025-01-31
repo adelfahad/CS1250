@@ -68,7 +68,7 @@
                     <input type="password" name="password" placeholder="Password" required />
                     <label></label>
                 </div>
-                <a href="#" class="forgot">Forgot your password?</a>
+                <a href="#" class="forgot" id="forgotPasswordLink">Forgot your password?</a>
                 <button type="submit">Sign In</button>
             </form>
         </div>
@@ -87,6 +87,22 @@
             </div>
             <button id="overlayBtn"></button>
         </div>
+        <div class="form-container forgot-password-container" id="forgotPasswordContainer" style="display: none;">
+            <h1>Reset Your Password</h1>
+            <p>Enter your email and new password</p>
+            
+            <div class="infield">
+                <input type="email" name="email" id="resetEmail" placeholder="Enter your email" required />
+            </div>
+            <div class="infield">
+                <input type="password" name="password" id="resetPassword" placeholder="Enter new password" required />
+            </div>
+            
+            <button id="resetPasswordBtn">Reset Password</button>
+        <div>
+            <a href="#" id="backToLogin">Back to Login</a>
+        </div>
+        
     </div>
 
 
@@ -160,5 +176,51 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     }
 });
     </script>
+<script>
+    document.getElementById('forgotPasswordLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('forgotPasswordContainer').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block'; // تفعيل التعتيم
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('forgotPasswordContainer').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none'; // إزالة التعتيم
+    });
+
+    document.getElementById('resetPasswordBtn').addEventListener('click', async function () {
+        const email = document.getElementById('resetEmail').value;
+        const password = document.getElementById('resetPassword').value;
+
+        if (!email || !password) {
+            alert("Please enter your email and new password");
+            return;
+        }
+
+        try {
+            const response = await fetch('/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                alert('Password has been reset successfully!');
+                document.getElementById('forgotPasswordContainer').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none'; // إزالة التعتيم
+            } else {
+                const error = await response.json();
+                alert(error.message || 'Failed to reset password');
+            }
+        } catch (error) {
+            alert('Network error');
+        }
+    });
+</script>
+
+<div id="overlay" class="overlay-active" style="display: none;"></div>
+
+
 </body>
 </html>

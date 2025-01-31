@@ -68,7 +68,7 @@
                     <input type="password" name="password" placeholder="كلمة المرور" required />
                     <label></label>
                 </div>
-                <a href="#" class="forgot">هل نسيت كلمة المرور؟</a>
+                <a href="#" class="forgot" id="forgotPasswordLink">هل نسيت كلمة المرور؟</a>
                 <button type="submit">تسجيل الدخول</button>
             </form>
         </div>
@@ -86,6 +86,21 @@
                 </div>
             </div>
             <button id="overlayBtn"></button>
+        </div>
+        <div class="form-container forgot-password-container" id="forgotPasswordContainer" style="display: none;">
+            <h1>إعادة تعيين كلمة المرور</h1>
+            <p>أدخل بريدك الإلكتروني وكلمة المرور الجديدة</p>
+            
+            <div class="infield">
+                <input type="email" name="email" id="resetEmail" placeholder="أدخل بريدك الإلكتروني" required />
+            </div>
+            <div class="infield">
+                <input type="password" name="password" id="resetPassword" placeholder="أدخل كلمة المرور الجديدة" required />
+            </div>
+            
+            <button id="resetPasswordBtn">إعادة تعيين كلمة المرور</button>
+        <div>
+            <a href="#" id="backToLogin">العودة إلى تسجيل الدخول</a>
         </div>
     </div>
 
@@ -160,5 +175,50 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     }
 });
     </script>
+<script>
+    document.getElementById('forgotPasswordLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('forgotPasswordContainer').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block'; // تفعيل التعتيم
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('forgotPasswordContainer').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none'; // إزالة التعتيم
+    });
+
+    document.getElementById('resetPasswordBtn').addEventListener('click', async function () {
+        const email = document.getElementById('resetEmail').value;
+        const password = document.getElementById('resetPassword').value;
+
+        if (!email || !password) {
+            alert("يرجى إدخال بريدك الإلكتروني وكلمة المرور الجديدة");
+            return;
+        }
+
+        try {
+            const response = await fetch('/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                alert('تم إعادة تعيين كلمة المرور بنجاح!');
+                document.getElementById('forgotPasswordContainer').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none'; // إزالة التعتيم
+            } else {
+                const error = await response.json();
+                alert(error.message || 'فشل في إعادة تعيين كلمة المرور');
+            }
+        } catch (error) {
+            alert('خطأ في الشبكة');
+        }
+    });
+</script>
+
+<div id="overlay" class="overlay-active" style="display: none;"></div>
+
 </body>
 </html>

@@ -283,6 +283,47 @@ app.post('/display-ticket', (req, res) => {
     `);
 });
 
+app.post('/reset-password', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        console.log('Error: Missing email or password');
+        return res.status(400).json({ message: 'Please provide both email and password' });
+    }
+
+    try {
+        const checkUserQuery = 'SELECT * FROM users WHERE email = ?';
+        db.query(checkUserQuery, [email], async (err, results) => {
+            if (err) {
+                console.error('Error checking user:', err);
+                return res.status(500).json({ message: 'Error checking user' });
+            }
+
+            if (results.length === 0) {
+                console.log(`No user found with email: ${email}`);
+                return res.status(404).json({ message: 'Email not found' });
+            }
+
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            const updateQuery = 'UPDATE users SET password = ? WHERE email = ?';
+            db.query(updateQuery, [hashedPassword, email], (err, result) => {
+                if (err) {
+                    console.error('Error updating password:', err);
+                    return res.status(500).json({ message: 'Failed to update password' });
+                }
+
+                console.log('Password updated successfully');
+                res.json({ message: 'Password updated successfully' });
+            });
+        });
+    } catch (error) {
+        console.error('Error during password reset:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 
 app.get('/contact.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../../CS1250', 'contact.html'));
