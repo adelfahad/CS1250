@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar"></html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,10 +72,14 @@
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    width: 100%;
+    max-width: 1500px; /* تحديد أقصى عرض للجدول */
+    border-collapse: collapse;
+    margin: 20px auto; /* لتوسيط الجدول */
+    background: rgba(255, 255, 255, 0.1); /* خلفية شفافة */
+    border-radius: 8px;
+    overflow: hidden;
+}
 
         table, th, td {
             border: 1px solid #ddd;

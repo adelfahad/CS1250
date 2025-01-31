@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>مترو الرياض</title>
+        <title>Riyadh metro</title>
         <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
         <link rel="stylesheet" href="styleHomePage.css">
     </head>
@@ -10,7 +10,7 @@
                 <img src="photo/Riyadh_metro_logo.png" class="logo">
                 <ul>
                     <li><a href="HomePage-Ar.html">الرئيسية</a></li>
-                    <li><a href="Paths.html">الخريطة</a></li>
+                    <li><a href="Paths-Ar.html">الخريطة</a></li>
                     <li><a href="Stations-Ar.html">الخطوط</a></li>
                     <li><a href="TicketPage-Ar.html">التذاكر</a></li>
                     <li><a href="contact-Ar.html">الدعم</a></li>
@@ -22,7 +22,49 @@
                 <h1>مترو الرياض</h1>
                 <p>استمتع بالنقل السلس والمريح والموثوق مع مترو الرياض
                     <br> أسرع وسيلة للسفر عبر المدينة </p>
+                    <h2>الإعلانات</h2>
+                    <table id="announcementsTable">
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>الوصف</th>
+                                <th>العنوان</th>
+                                <th>المعرف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
             </div>
         </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+const tableBody = document.querySelector('#announcementsTable tbody');
+
+// جلب البيانات من السيرفر
+fetch('http://localhost:3000/api/announcements')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(announcement => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${new Date(announcement.date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>
+                <td>${announcement.description}</td>
+                <td>${announcement.title}</td>
+                <td>${announcement.id}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        tableBody.innerHTML = `<tr><td colspan="4">Error loading data</td></tr>`;
+    });
+});
+</script>
+
+
     </body>
 </html>
