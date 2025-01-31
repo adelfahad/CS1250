@@ -122,67 +122,118 @@ app.get('/logout', (req, res) => {
         if (err) {
             console.log('Error destroying session:', err);
         }
-        res.redirect('/profilePage.html');
+        res.redirect('/logInSignUp.html');
     });
 });
-app.post('/generate-ticket', (req, res) => {
-    const { class: ticketClass, price, duration } = req.body;
+app.post('/generate-ticket', async (req, res) => {
+    try {
+        const { class: ticketClass, price, duration } = req.body;
 
+        if (!ticketClass || !price || !duration) {
+            return res.status(400).json({ error: 'Missing ticket data' });
+        }
 
-    if (!ticketClass || !price || !duration) {
-        return res.status(400).json({ error: 'Missing ticket data' });
-    }
+        if (!req.session.user || !req.session.user.id) {
+            return res.status(401).json({ error: 'User not logged in' });
+        }
 
-    const validClasses = ['VIP', 'Normal', 'First-class',"Regular"];
-    if (!validClasses.includes(ticketClass)) {
-        return res.status(400).json({ error: 'Invalid class value' });
-    }
+        const userId = req.session.user.id;
 
-    const newBarcode = uuidv4();
-    const currentDate = new Date();
-    const startTime = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+        // التحقق من الفئة
+        const validClasses = ['VIP', 'Normal', 'First-class', 'Regular'];
+        if (!validClasses.includes(ticketClass)) {
+            return res.status(400).json({ error: 'Invalid class value' });
+        }
 
-    const validHours = parseInt(duration.split('-')[0]);
-    if (isNaN(validHours)) {
-        return res.status(400).json({ error: 'Invalid duration value' });
-    }
+        const newBarcode = uuidv4();
+        const riyadhOffset = 3 * 60 * 60 * 1000; // توقيت الرياض
+        const currentDate = new Date();
+        const startTime = new Date(currentDate.getTime() + riyadhOffset)
+        .toISOString()
+        .slice(0, 19)
+        .replace('T', ' ');
 
-    const endTime = new Date(currentDate.getTime() + validHours * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
+        // استخراج عدد الساعات من المدة
+        let validHours;
+        let validDays;
+        if (duration.includes('day')) {
+            validDays = parseInt(duration.split('-')[0]);
+            validHours = validDays * 24; // تحويل الأيام إلى ساعات
+        } else if (duration.includes('hour')) {
+            validHours = parseInt(duration.split('-')[0]); // استخراج الساعات مباشرة
+        } else {
+            return res.status(400).json({ error: 'Invalid duration format. Use "X-day pass" or "X-hour pass".' });
+        }
 
-    bwipjs.toBuffer(
-        {
-            bcid: 'code128',
-            text: newBarcode,
-            scale: 3,
-            height: 10,
-            includetext: true,
-            textxalign: 'center',
-        },
-        (err, png) => {
-            if (err) {
-                return res.status(500).json({ error: 'Failed to generate barcode image' });
-            }
+        if (isNaN(validHours) || validHours <= 0) {
+            return res.status(400).json({ error: 'Invalid duration value' });
+        }
 
-            const imageBase64 = png.toString('base64');
+        // حساب وقت انتهاء التذكرة
+        const endTime = new Date(currentDate.getTime() + (validHours * 60 * 60 * 1000) + riyadhOffset)
+        .toISOString()
+        .slice(0, 19)
+        .replace('T', ' ');
 
-            const query = 'INSERT INTO tickets (ticket_date, hours, class, start_time, end_time, barcode) VALUES (NOW(), ?, ?, ?, ?, ?)';
-            db.query(query, [validHours, ticketClass, startTime, endTime, newBarcode], (err, result) => {
+        // إنشاء صورة الباركود
+        bwipjs.toBuffer(
+            {
+                bcid: 'code128',
+                text: newBarcode,
+                scale: 3,
+                height: 10,
+                includetext: true,
+                textxalign: 'center',
+            },
+            (err, png) => {
                 if (err) {
-                    return res.status(500).json({ error: 'Failed to save ticket in database' });
+                    return res.status(500).json({ error: 'Failed to generate barcode image' });
                 }
 
-                res.json({
-                    message: 'Ticket created successfully!',
-                    barcode: newBarcode,
-                    imageBase64: imageBase64,
-                    startTime: startTime,
-                    endTime: endTime,
+                const imageBase64 = png.toString('base64');
+
+                // إدخال البيانات إلى قاعدة البيانات
+                const query =
+                    'INSERT INTO tickets (user_id, ticket_date, price, hours, class, start_time, end_time, barcode) ' +
+                    'VALUES (?, NOW(), ?, ?, ?, ?, ?, ?)';
+
+                db.query(query, [userId, price, validHours, ticketClass, startTime, endTime, newBarcode], (err, result) => {
+                    if (err) {
+                        console.error('❌ Database error:', err);
+                        return res.status(500).json({ error: 'Failed to save ticket in database' });
+                    }
+
+                    res.json({
+                        message: 'Ticket created successfully!',
+                        barcode: newBarcode,
+                        imageBase64: imageBase64,
+                        startTime: startTime,
+                        endTime: endTime,
+                    });
                 });
-            });
-        }
-    );
+            }
+        );
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
+
+app.get('/user-tickets', (req, res) => {
+    const user_id = req.session.user.id;
+
+    const query = 'SELECT * FROM tickets WHERE user_id = ? ORDER BY ticket_date DESC';
+    
+    db.query(query, [user_id], (err, results) => {
+        if (err) {
+            console.error('❌ Database error:', err);
+            return res.status(500).json({ error: 'Failed to fetch tickets' });
+        }
+
+        console.log('📌 Tickets from database:', results);
+        res.json(results);  
+    });
+});
 
 app.post('/display-ticket', (req, res) => {
     const { barcodeBase64, price, ticketClass } = req.body;

@@ -17,6 +17,7 @@
             <ul class="menu">
                 <li><a href="HomePage.html" style="text-decoration: none; color: inherit;">Home</a></li>
                 <li><a href="TicketPage.html" style="text-decoration: none; color: inherit;">Tickets</a></li>
+                <li><a href="user-tickets.html" style="text-decoration: none; color: inherit;">My Tickets</a></li>
                 <li><a href="contact.html" style="text-decoration: none; color: inherit;">Support</a></li>
                 <li><a href="Stations.html" style="text-decoration: none; color: inherit;">Lines</a></li>
             </ul>
@@ -24,7 +25,7 @@
         <div class="main-content">
             <div class="navbar">
                 <ul>
-                    <li><a href="logInSignUp.html" style="text-decoration: none; color: inherit;">Signout</a></li>
+                    <li><a href="logout" style="text-decoration: none; color: inherit;">Signout</a></li>
                     <img src="photo/logo.png" class="rouneded-circle" width="40">
                 </ul>
             </div>
@@ -60,7 +61,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Could not fetch profile data');
+                window.location.href = 'logInSignUp.html';
             });
     </script>
 </body>
