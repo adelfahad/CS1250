@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تذاكري</title>
+    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('riyadhMetro.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #FFF;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar img {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .navbar ul li a:hover {
+            color: #6fd450;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #FFF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.2); /* شفافية للخلفية */
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* شفافية عند التمرير */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <img src="/photo/Riyadh_metro_logo.png" alt="الشعار">
+        <ul>
+            <li><a href="contact-Ar.html">الدعم</a></li>
+            <li><a href="#map">الخريطة</a></li>
+            <li><a href="TicketPage-Ar.html">التذاكر</a></li>
+            <li><a href="#announcement">الإعلانات</a></li>
+            <li><a href="profilePage-Ar.html">الملف الشخصي</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>تذاكري</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>رقم التذكرة</th>
+                    <th>الفئة</th>
+                    <th>السعر</th>
+                    <th>وقت البداية</th>
+                    <th>وقت النهاية</th>
+                    <th>الباركود</th>
+                </tr>
+            </thead>
+            <tbody id="ticketsTable">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Fetching tickets from the server and displaying them in the table
+        fetch('http://localhost:3000/user-tickets', { credentials: 'include' })
+            .then(response => response.json())
+            .then(tickets => {
+                if (tickets.error) {
+                    throw new Error(tickets.error); // Handle error if exists
+                }
+                console.log('📌 Tickets received from server:', tickets); // ✅ Print tickets in console
+        
+                const tableBody = document.getElementById('ticketsTable');
+                tableBody.innerHTML = ''; // Clear the table before adding data
+        
+                if (tickets.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="6">لا توجد تذاكر متاحة</td></tr>';
+                } else {
+                    tickets.forEach(ticket => {
+                        const startTime = new Date(ticket.start_time);
+                        const endTime = new Date(startTime.getTime() + ticket.hours * 60 * 60 * 1000);
+                        const formattedEndTime = endTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        
+                        const row = `<tr>
+                            <td>${ticket.id}</td>
+                            <td>${ticket.class}</td>
+                            <td>${(ticket.price).toLocaleString('hi-IN', { style: 'currency', currency: 'SAR', useGrouping: false })}</td>
+                            <td>${startTime.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })}</td>
+                            <td>${endTime.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })}</td>
+                            <td>${ticket.barcode}</td>
+                        </tr>`;
+                        tableBody.innerHTML += row;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('❌ Error fetching tickets:', error);
+                alert('حدث خطأ أثناء تحميل التذاكر. يرجى المحاولة مرة أخرى.');
+            });
+    </script>
+
+</body>
+</html>

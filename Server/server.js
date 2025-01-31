@@ -358,6 +358,20 @@ app.get('/profile', (req, res) => {
             }
         });
     });
+    // عربي
+    app.get('/contact-Ar.html', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../CS1250', 'contact-Ar.html'));
+    });
+    
+    app.get('/Ar', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../CS1250', 'logInSignUp-Ar.html'));
+    });
+    
+    app.get('Stations-Ar.html', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../CS1250', 'Stations-Ar.html'));
+    });
+    
+    
 // تشغيل الخادم
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');

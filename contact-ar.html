@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا</title>
+    <link rel="stylesheet" href="styleContact.css">
+    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+</head>
+<body>
+    <div class="navbar">
+        <img src="/photo/Riyadh_metro_logo.png" class="logo">
+        <ul>
+            <li><a href="HomePage-Ar.html">الرئيسية</a></li>
+            <li><a href="#">الخريطة</a></li>
+            <li><a href="Stations-Ar.html">الخطوط</a></li>
+            <li><a href="TicketPage-Ar.html">التذاكر</a></li>
+            <li><a href="contact-Ar.html">الدعم</a></li>
+            <li><a href="profilePage-Ar.html">الملف الشخصي</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <form id="contactForm">
+            <h1>نموذج الاتصال بنا</h1>
+            <input type="text" id="firstName" placeholder="الاسم الأول" required>
+            <input type="text" id="lastName" placeholder="اسم العائلة" required>
+            <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+            <input type="text" id="mobile" placeholder="رقم الجوال" required>
+            <h4>اكتب رسالتك هنا ...</h4>
+            <textarea id="message" required></textarea>
+            <input type="submit" value="إرسال" id="button">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const data = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value,
+                message: document.getElementById('message').value,
+            };
+
+            fetch('http://localhost:3000/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('تم إرسال الرسالة بنجاح!');
+                window.location.href = 'HomePage-Ar.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء إرسال رسالتك.');
+            });
+        });
+    </script>
+</body>
+</html>
