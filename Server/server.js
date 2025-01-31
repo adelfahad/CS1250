@@ -218,6 +218,10 @@ app.post('/generate-ticket', async (req, res) => {
     }
 });
 
+app.get('/fareCalculator.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../CS1250', 'fareCalculator.html'));
+});
+
 
 app.get('/user-tickets', (req, res) => {
     const user_id = req.session.user.id;
