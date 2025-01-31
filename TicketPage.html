@@ -20,16 +20,41 @@
         }
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 15px 50px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
         }
-
+    .logo {
+    width: 130px;
+    cursor: pointer;
+}
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li ::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #6fd450;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li :hover:after {
+    width: 100%;
+}
         .navbar img {
             height: 40px;
             cursor: pointer;
@@ -41,14 +66,16 @@
         }
 
         .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-        }
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
 
         .navbar ul li a:hover {
             color: #6fd450;
@@ -120,14 +147,15 @@
     </head>
     <body>
         <div class="navbar">
-        <img src="/photo/Riyadh_metro_logo.png" alt="logo">
-        <ul>
-            <li><a href="contact.html">SUPPORT</a></li>
-            <li><a href="#map">MAP</a></li>
-            <li><a href="TicketPage.html">TICKETS</a></li>
-            <li><a href="#announcement">ANNOUNCEMENT</a></li>
-            <li><a href="profilePage.html">PROFILE</a></li>
-        </ul>
+            <img src="photo/Riyadh_metro_logo.png" class="logo">
+            <ul>
+                <li><a href="HomePage.html">home</a></li>
+                <li><a href="#">Map</a></li>
+                <li><a href="Stations.html">lines</a></li>
+                <li><a href="TicketPage.html">tickets</a></li>
+                <li><a href="contact.html">support</a></li>
+                <li><a href="profilePage.html">profile</a></li>
+            </ul>
         </div>
 
         <div class="container">
@@ -286,3 +314,4 @@ function createTicket(ticketClass, price, duration, hours) {
     </script>
 </body>
 </html>
+</div>
