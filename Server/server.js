@@ -399,6 +399,15 @@ app.get('/profile', (req, res) => {
             }
         });
     });
+    app.get('/api/announcements', (req, res) => {
+        const sql = 'SELECT * FROM announcements ORDER BY date DESC';
+        db.query(sql, (err, results) => {
+          if(err) {
+            return res.status(500).json({ error: err.message });
+          }
+          res.json(results);
+        });
+      });
     // عربي
     app.get('/contact-Ar.html', (req, res) => {
         res.sendFile(path.join(__dirname, '../../CS1250', 'contact-Ar.html'));
