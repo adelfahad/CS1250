@@ -408,6 +408,40 @@ app.get('/profile', (req, res) => {
           res.json(results);
         });
       });
+      app.post('/login-admin', async (req, res) => {
+        const { username, password } = req.body;
+        
+        // Hardcoded credentials (in real app, use database lookup)
+        if (username === 'admin' && password === 'Ss@1234') {
+            req.session.authenticated = true;
+            res.json({ success: true });
+        } else {
+            res.status(401).json({ success: false });
+        }
+    });
+    
+    app.post('/announcements', (req, res) => {
+        if (!req.session.authenticated) {
+            return res.status(401).json({ success: false });
+        }
+
+        const { title, description } = req.body;
+
+        if (!title || !description) {
+            return res.status(400).json({ success: false, message: 'Missing title or description' });
+        }
+
+        const query = 'INSERT INTO announcements (title, description) VALUES (?, ?)';
+        db.query(query, [title, description], (err, result) => {
+            if (err) {
+                console.error('Error inserting announcement:', err);
+                return res.status(500).json({ success: false, error: err.message });
+            }
+
+            res.json({ success: true, id: result.insertId });
+        });
+    });
+    
     // عربي
     app.get('/contact-Ar.html', (req, res) => {
         res.sendFile(path.join(__dirname, '../../CS1250', 'contact-Ar.html'));
