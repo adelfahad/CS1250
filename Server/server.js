@@ -263,11 +263,12 @@ app.post('/display-ticket', (req, res) => {
         <div class="navbar">
             <img src="photo/Riyadh_metro_logo.png" class="logo">
             <ul>
-                <li><a href="#">Map</a></li>
-                <li><a href="TicketPage.html">Tickets</a></li>
-                <li><a href="#">announcement</a></li>
-                <li><a href="profilePage.html">Profile</a></li>
-                <li><a href="contact.html">support</a></li>
+                    <li><a href="HomePage.html">home</a></li>
+                    <li><a href="Paths.html">Map</a></li>
+                    <li><a href="Stations.html">lines</a></li>
+                    <li><a href="TicketPage.html">tickets</a></li>
+                    <li><a href="contact.html">support</a></li>
+                    <li><a href="profilePage.html">profile</a></li>
 
             </ul>
         </div>
