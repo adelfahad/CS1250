@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:5.7  # يمكنك تحديد إصدار MySQL المناسب
+        image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: password  # تعيين كلمة مرور للمستخدم الجذر
-          MYSQL_DATABASE: test_database  # تحديد قاعدة البيانات
+          MYSQL_ROOT_PASSWORD: Root@1234
+          MYSQL_DATABASE: test_database
         ports:
-          - 3306:3306  # ربط المنفذ المحلي بـ MySQL
+          - 3306:3306
         options: --health-cmd="mysqladmin ping --silent" --health-timeout=5s --health-retries=5  # التحقق من أن MySQL يعمل بشكل سليم
 
     steps:
@@ -50,7 +50,7 @@ jobs:
           done
       - name: Setup database schema
         run: |
-          mysql -h 127.0.0.1 -u root --password=password test_database <<EOF
+          mysql -h 127.0.0.1 -u root --password=Root@1234 test_database <<EOF
           CREATE TABLE IF NOT EXISTS contacts (
               id INT AUTO_INCREMENT PRIMARY KEY,
               first_name VARCHAR(255) NOT NULL,
@@ -58,8 +58,8 @@ jobs:
               email VARCHAR(255) NOT NULL,
               mobile VARCHAR(20) NOT NULL,
               message TEXT NOT NULL
-          );
-          EOF
+            );
+            EOF
       
       - name: Run tests
         run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
