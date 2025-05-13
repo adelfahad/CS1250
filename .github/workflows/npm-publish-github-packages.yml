@@ -3,7 +3,8 @@ name: Node.js CI
 on:
   push:
     branches:
-      - adelfahad-test  # يمكن تعديل هذا ليشمل الفروع التي تعمل عليها
+      - main
+      - adelfahad-test  # تعديل الفروع التي تريد تشغيل الاختبارات عليها
 
 jobs:
   tests:
@@ -16,7 +17,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: testrootpass
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - uses: actions/checkout@v4  # التحقق من الكود
@@ -65,4 +66,9 @@ jobs:
           MYSQL_USER: root
           MYSQL_PASSWORD: testrootpass
           MYSQL_HOST: 127.0.0.1
-        run: cd Server && npm test  # تشغيل الاختبارات
+        run: cd Server && npm test -- --json --outputFile=test-results.json  # تشغيل الاختبارات وتوليد تقرير JSON
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: Server/test-results.json
