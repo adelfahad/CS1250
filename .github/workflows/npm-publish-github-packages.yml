@@ -12,7 +12,8 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: Root@1234
+          MYSQL_ROOT_PASSWORD: ""
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"  # هذا يتيح لك استخدام MySQL بدون كلمة مرور
           MYSQL_DATABASE: test_database
         ports:
           - 3306:3306
@@ -60,7 +61,7 @@ jobs:
           done
       - name: Setup database schema
         run: |
-          mysql -h 127.0.0.1 -u root --password=Root@1234 test_database <<EOF
+          mysql -h 127.0.0.1 -u root --password= test_database <<EOF
           CREATE TABLE IF NOT EXISTS contacts (
             id INT NOT NULL AUTO_INCREMENT,
             first_name VARCHAR(100) DEFAULT NULL,
@@ -72,5 +73,6 @@ jobs:
             PRIMARY KEY (id)
           ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
           EOF
+
       - name: Run tests
         run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
