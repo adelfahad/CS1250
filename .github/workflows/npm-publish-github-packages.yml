@@ -67,6 +67,8 @@ jobs:
           MYSQL_PASSWORD: testrootpass
           MYSQL_HOST: 127.0.0.1
         run: cd Server && npm test -- --json --outputFile=test-results.json  # تشغيل الاختبارات وتوليد تقرير JSON
+      - name: Run tests with coverage
+        run: cd Server && npm test -- --coverage
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
