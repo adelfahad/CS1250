@@ -19,10 +19,10 @@ app.use(express.static(path.join(__dirname, '../../CS1250')));
 
 // إعداد الاتصال بقاعدة البيانات
 const db = mysql.createConnection({
-    host: 'localhost',
+    host:  process.env.MYSQL_HOST || 'localhost',
     user: 'root',
-    password: 'Root@1234', // تغيير كلمة المرور حسب إعداداتك
-    database: 'riyadhmetro'
+    password: process.env.MYSQL_PASSWORD || 'Root@1234', // تغيير كلمة المرور حسب إعداداتك
+    database: process.env.MYSQL_DATABASE || 'riyadhmetro'
 });
 
 // الاتصال بقاعدة البيانات
