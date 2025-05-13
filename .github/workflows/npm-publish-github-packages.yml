@@ -50,18 +50,18 @@ jobs:
           done
       - name: Setup database schema
         run: |
-          mysql -h 127.0.0.1 -u root --password=Root@1234 test_database <<EOF
-          CREATE TABLE IF NOT EXISTS contacts (
-            id INT NOT NULL AUTO_INCREMENT,
-            first_name VARCHAR(100) DEFAULT NULL,
-            last_name VARCHAR(100) DEFAULT NULL,
-            email VARCHAR(100) DEFAULT NULL,
-            mobile VARCHAR(50) DEFAULT NULL,
-            message TEXT,
-            created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (id)
-            ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-            EOF
-      
+           mysql -h 127.0.0.1 -u root --password=Root@1234 test_database <<EOF
+           CREATE TABLE IF NOT EXISTS contacts (
+             id INT NOT NULL AUTO_INCREMENT,
+             first_name VARCHAR(100) DEFAULT NULL,
+             last_name VARCHAR(100) DEFAULT NULL,
+             email VARCHAR(100) DEFAULT NULL,
+             mobile VARCHAR(50) DEFAULT NULL,
+             message TEXT,
+             created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+             PRIMARY KEY (id)
+             ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+             EOF
+                
       - name: Run tests
         run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
