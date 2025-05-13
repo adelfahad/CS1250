@@ -12,10 +12,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      
       - uses: actions/checkout@v4  # التحقق من الكود
       - uses: actions/setup-node@v4  # إعداد بيئة Node.js
         with:
           node-version: 20  # تحديد إصدار Node.js
+      - name: Give execute permission to jest
+        run: chmod +x ./node_modules/.bin/jest
       - run: cd Server && npm ci  # الانتقال إلى مجلد Server وتثبيت التبعيات
       - run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
-      
