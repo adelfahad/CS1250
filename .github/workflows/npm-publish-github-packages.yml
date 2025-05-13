@@ -16,5 +16,6 @@ jobs:
       - uses: actions/setup-node@v4  # إعداد بيئة Node.js
         with:
           node-version: 20  # تحديد إصدار Node.js
-      - run: npm ci  # تثبيت التبعيات
-      - run: npm test  # تشغيل الاختبارات
+      - run: cd Server && npm ci  # الانتقال إلى مجلد Server وتثبيت التبعيات
+      - run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
+      
