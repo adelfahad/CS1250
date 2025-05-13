@@ -58,8 +58,8 @@ jobs:
               email VARCHAR(255) NOT NULL,
               mobile VARCHAR(20) NOT NULL,
               message TEXT NOT NULL
-            );
-            EOF
+          );
+          EOF
       
       - name: Run tests
         run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
