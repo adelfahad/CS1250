@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server.js'); // استيراد التطبيق
+const app = require('./server.js'); // استيراد التطبيق
 
 describe('Test API Endpoints', () => {
     it('should return the contact.html file', async () => {
