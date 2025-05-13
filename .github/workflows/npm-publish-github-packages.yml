@@ -1,0 +1,20 @@
+# This workflow will run tests using node when changes are pushed to the main branch
+# For more information, see: https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action
+
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main  # يمكن تعديل هذا ليشمل الفروع التي تعمل عليها
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # التحقق من الكود
+      - uses: actions/setup-node@v4  # إعداد بيئة Node.js
+        with:
+          node-version: 20  # تحديد إصدار Node.js
+      - run: npm ci  # تثبيت التبعيات
+      - run: npm test  # تشغيل الاختبارات
