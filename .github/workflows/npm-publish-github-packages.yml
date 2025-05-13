@@ -37,5 +37,18 @@ jobs:
             echo "Waiting for MySQL...";
             sleep 5;
           done
+      - name: Setup database schema
+        run: |
+          mysql -h 127.0.0.1 -u root -ppassword test_database <<EOF
+          CREATE TABLE IF NOT EXISTS contacts (
+              id INT AUTO_INCREMENT PRIMARY KEY,
+              first_name VARCHAR(255) NOT NULL,
+              last_name VARCHAR(255) NOT NULL,
+              email VARCHAR(255) NOT NULL,
+              mobile VARCHAR(20) NOT NULL,
+              message TEXT NOT NULL
+          );
+          EOF    
+      
       - name: Run tests
         run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
