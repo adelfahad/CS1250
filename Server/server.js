@@ -177,15 +177,15 @@ app.post('/contact', (req, res) => {
 // تجهيز متغير الخادم
 let server;
 
-// إغلاق الاتصال بقاعدة البيانات عند إيقاف الخادم
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server')
-  if (server) {
-    server.close(() => {
-      console.log('HTTP server closed')
-    })
-  }
-})
+// // إغلاق الاتصال بقاعدة البيانات عند إيقاف الخادم
+// process.on('SIGTERM', () => {
+//   console.log('SIGTERM signal received: closing HTTP server')
+//   if (server) {
+//     server.close(() => {
+//       console.log('HTTP server closed')
+//     })
+//   }
+// })
 
 if (require.main === module) {
     const port = process.env.PORT || 3000;
