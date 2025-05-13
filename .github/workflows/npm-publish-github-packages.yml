@@ -49,19 +49,9 @@ jobs:
             echo "Waiting for MySQL...";
             sleep 5;
           done
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {1..10}; do
-            if mysqladmin ping -h 127.0.0.1 --silent; then
-              echo "MySQL is ready";
-              break;
-            fi;
-            echo "Waiting for MySQL..."; 
-            sleep 5;
-          done
       - name: Setup database schema
         run: |
-          mysql -h 127.0.0.1 -u root --password= test_database <<EOF
+          mysql -h 127.0.0.1 -u root --password="" test_database <<EOF
           CREATE TABLE IF NOT EXISTS contacts (
             id INT NOT NULL AUTO_INCREMENT,
             first_name VARCHAR(100) DEFAULT NULL,
