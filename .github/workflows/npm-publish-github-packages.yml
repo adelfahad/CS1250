@@ -6,7 +6,7 @@ name: Node.js CI
 on:
   push:
     branches:
-      - main  # يمكن تعديل هذا ليشمل الفروع التي تعمل عليها
+      - adelfahad-test  # يمكن تعديل هذا ليشمل الفروع التي تعمل عليها
 
 jobs:
   build:
