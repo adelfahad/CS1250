@@ -23,7 +23,17 @@ jobs:
       - uses: actions/setup-node@v4  # إعداد بيئة Node.js
         with:
           node-version: 20  # تحديد إصدار Node.js
-      - name: Give execute permission to jest
-        run: chmod +x ./node_modules/.bin/jest
-      - run: cd Server && npm ci  # الانتقال إلى مجلد Server وتثبيت التبعيات
-      - run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
+      - name: Install dependencies
+        run: cd Server && npm ci  # الانتقال إلى مجلد Server وتثبيت التبعيات
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..10}; do
+            if mysqladmin ping -h 127.0.0.1 --silent; then
+              echo "MySQL is ready";
+              break;
+            fi;
+            echo "Waiting for MySQL...";
+            sleep 5;
+          done
+      - name: Run tests
+        run: cd Server && npm test  # الانتقال إلى مجلد Server وتشغيل الاختبارات
