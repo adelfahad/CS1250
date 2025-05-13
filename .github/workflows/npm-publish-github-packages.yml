@@ -40,6 +40,9 @@ jobs:
             echo "Waiting for MySQL...";
             sleep 5;
           done
+      - name: Set MySQL authentication mode
+        run: |
+          mysql -h 127.0.0.1 -u root --password=testrootpass -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'testrootpass';"
       - name: Setup database schema
         run: |
           mysql -h 127.0.0.1 -u root --password=testrootpass testdb <<EOF
