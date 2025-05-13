@@ -20,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4  # التحقق من الكود
+      - name: Fix permissions
+        run: chmod +x ./node_modules/.bin/jest
       - uses: actions/setup-node@v4  # إعداد بيئة Node.js
         with:
           node-version: 20  # تحديد إصدار Node.js
