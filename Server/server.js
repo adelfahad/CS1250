@@ -33,7 +33,6 @@ db.connect((err) => {
     }
     console.log('Connected to MySQL database');
 });
-module.exports = { app, db }; // تصدير التطبيق واتصال قاعدة البيانات
 
 // مسار لتوليد باركود مباشرة كـ base64 دون حفظ الصورة
 app.post('/generate-ticket', (req, res) => {
@@ -175,18 +174,25 @@ app.post('/contact', (req, res) => {
     });
 });
 
-// تشغيل الخادم
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+// تجهيز متغير الخادم
+let server;
+
 // إغلاق الاتصال بقاعدة البيانات عند إيقاف الخادم
-process.on('SIGINT', () => {
-    db.end((err) => {
-        if (err) console.error('Error closing DB connection:', err);
-        console.log('DB connection closed');
-        process.exit(0);
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received: closing HTTP server')
+  if (server) {
+    server.close(() => {
+      console.log('HTTP server closed')
+    })
+  }
+})
+
+if (require.main === module) {
+    const port = process.env.PORT || 3000;
+    server = app.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}`);
     });
-});
+}
+
 
 module.exports = { app, db }; // تصدير db مع app
