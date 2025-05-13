@@ -68,7 +68,7 @@ jobs:
           MYSQL_HOST: 127.0.0.1
         run: cd Server && npm test -- --json --outputFile=test-results.json  # تشغيل الاختبارات وتوليد تقرير JSON
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: Server/test-results.json
