@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - adelfahad-test  # تعديل الفروع التي تريد تشغيل الاختبارات عليها
+      - adelfahad-test  
 
 jobs:
   tests:
@@ -20,7 +20,7 @@ jobs:
         options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - uses: actions/checkout@v4  # التحقق من الكود
+      - uses: actions/checkout@v4  
       - name: Install Ubuntu dependencies
         run: |
           sudo apt-get update
@@ -28,9 +28,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20  # تحديد إصدار Node.js
+          node-version: 20  
       - name: Install dependencies
-        run: cd Server && npm ci  # تثبيت التبعيات
+        run: cd Server && npm ci  
       - name: Wait for MySQL to be ready
         run: |
           for i in {1..10}; do
@@ -66,7 +66,7 @@ jobs:
           MYSQL_USER: root
           MYSQL_PASSWORD: testrootpass
           MYSQL_HOST: 127.0.0.1
-        run: cd Server && npm test -- --json --outputFile=test-results.json  # تشغيل الاختبارات وتوليد تقرير JSON
+        run: cd Server && npm test -- --json --outputFile=test-results.json
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
