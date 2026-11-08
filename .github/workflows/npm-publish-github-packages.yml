@@ -1,20 +1,27 @@
-# This workflow will run tests using node when changes are pushed to the main branch
-# For more information, see: https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action
+# يتأكد إن السيرفر يتثبت ويخلو من أخطاء الكتابة عند كل push أو pull request على main
 
 name: Node.js CI
 
 on:
   push:
     branches:
-      - main  # يمكن تعديل هذا ليشمل الفروع التي تعمل عليها
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Server  # package.json موجود داخل مجلد Server
     steps:
-      - uses: actions/checkout@v4  # التحقق من الكود
-      - uses: actions/setup-node@v4  # إعداد بيئة Node.js
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20  # تحديد إصدار Node.js
-      - run: npm ci  # تثبيت التبعيات
-      - run: npm test  # تشغيل الاختبارات
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Server/package-lock.json
+      - run: npm ci      # تثبيت المكتبات من package-lock.json
+      - run: npm test    # فحص server.js من أخطاء الكتابة

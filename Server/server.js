@@ -2,30 +2,36 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const cors = require('cors'); // استيراد مكتبة CORS
-const { v4: uuidv4 } = require('uuid'); // مكتبة لتوليد باركود فريد
-const bwipjs = require('bwip-js'); // مكتبة لإنشاء الباركود
+const cors = require('cors');
+const { v4: uuidv4 } = require('uuid');
+const bwipjs = require('bwip-js');
 
 const app = express();
 
-// تفعيل CORS لجميع الطلبات
+
 app.use(cors());
 
-// إعداد body-parser لتحليل JSON
+
 app.use(bodyParser.json());
 
-// إعداد مجلد الملفات الثابتة
+
 app.use(express.static(path.join(__dirname, '../../CS1250')));
 
-// إعداد الاتصال بقاعدة البيانات
+// بيانات قاعدة البيانات تنقرأ من ملف Server/.env (غير مرفوع على GitHub)
+try {
+    process.loadEnvFile(path.join(__dirname, '.env'));
+} catch {
+    console.warn('No .env file found in Server/ — copy .env.example to .env and fill it in');
+}
+
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Root@1234', // تغيير كلمة المرور حسب إعداداتك
-    database: 'riyadhmetro'
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME || 'riyadhmetro'
 });
 
-// الاتصال بقاعدة البيانات
+
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to the database:', err);
@@ -34,11 +40,11 @@ db.connect((err) => {
     console.log('Connected to MySQL database');
 });
 
-// مسار لتوليد باركود مباشرة كـ base64 دون حفظ الصورة
+
 app.post('/generate-ticket', (req, res) => {
     const { class: ticketClass, price, duration } = req.body;
 
-    // التحقق من البيانات المدخلة
+    
     if (!ticketClass || !price || !duration) {
         console.error('Missing ticket data:', { ticketClass, price, duration });
         return res.status(400).json({ error: 'Missing ticket data' });
@@ -50,10 +56,10 @@ app.post('/generate-ticket', (req, res) => {
         return res.status(400).json({ error: 'Invalid class value' });
     }
 
-    const newBarcode = uuidv4(); // توليد باركود فريد
-    const currentDate = new Date(); // وقت الشراء
-    const startTime = currentDate.toISOString().slice(0, 19).replace('T', ' '); // تحويل الوقت لصيغة MySQL
-    const validHours = parseInt(duration.split('-')[0]); // استخراج عدد الساعات
+    const newBarcode = uuidv4();
+    const currentDate = new Date();
+    const startTime = currentDate.toISOString().slice(0, 19).replace('T', ' '); 
+    const validHours = parseInt(duration.split('-')[0]);
     const endTime = new Date(currentDate.getTime() + validHours * 60 * 60 * 1000)
         .toISOString()
         .slice(0, 19)
@@ -66,12 +72,12 @@ app.post('/generate-ticket', (req, res) => {
 
     bwipjs.toBuffer(
         {
-            bcid: 'code128',       // نوع الباركود
-            text: newBarcode,      // النص الذي سيتم تحويله إلى باركود
-            scale: 3,              // حجم الصورة
-            height: 10,            // ارتفاع الباركود
-            includetext: true,     // تضمين النص أسفل الباركود
-            textxalign: 'center',  // محاذاة النص
+            bcid: 'code128',       
+            text: newBarcode,      
+            scale: 3,              
+            height: 10,           
+            includetext: true,     
+            textxalign: 'center',  
         },
         (err, png) => {
             if (err) {
@@ -79,10 +85,8 @@ app.post('/generate-ticket', (req, res) => {
                 return res.status(500).json({ error: 'Failed to generate barcode image' });
             }
 
-            // تحويل الصورة إلى Base64
             const imageBase64 = png.toString('base64');
 
-            // حفظ البيانات في قاعدة البيانات
             const query = `
                 INSERT INTO tickets (ticket_date, hours, class, start_time, end_time, barcode)
                 VALUES (NOW(), ?, ?, ?, ?, ?)
@@ -93,11 +97,10 @@ app.post('/generate-ticket', (req, res) => {
                     return res.status(500).json({ error: 'Failed to save ticket in database' });
                 }
 
-                // إرسال الرد مع البيانات
                 res.json({
                     message: 'Ticket created successfully!',
                     barcode: newBarcode,
-                    imageBase64: imageBase64, // إرسال الصورة كـ Base64
+                    imageBase64: imageBase64,
                     startTime: startTime,
                     endTime: endTime,
                 });
@@ -107,16 +110,13 @@ app.post('/generate-ticket', (req, res) => {
 });
 
 
-// مسار عرض التذكرة
 app.post('/display-ticket', (req, res) => {
     const { barcodeBase64, price, ticketClass } = req.body;
 
-    // التحقق من البيانات
     if (!barcodeBase64 || !price || !ticketClass) {
         return res.status(400).send('Invalid data received');
     }
 
-    // إنشاء صفحة HTML مع تضمين البيانات
     res.send(`
         <!DOCTYPE html>
         <html lang="en">
@@ -144,22 +144,20 @@ app.post('/display-ticket', (req, res) => {
         </html>
     `);
 });
-// المسار لصفحة اتصل بنا
+
 app.get('/contact.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../../CS1250', 'contact.html'));  // إرسال contact.html
 });
 
-// المسار للصفحة الرئيسية
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../CS1250', 'index.html'));  // إرسال index.html
 });
 
-// المسار لصفحة عن الموقع
 app.get('/about.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../../CS1250', 'about.html'));  // إرسال about.html
 });
 
-// المسار لمعالجة البيانات المرسلة من نموذج الاتصال (حفظ البيانات في قاعدة البيانات)
 app.post('/contact', (req, res) => {
     const { firstName, lastName, email, mobile, message } = req.body;
 
