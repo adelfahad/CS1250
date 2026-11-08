@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول || التسجيل</title>
+    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styleLogIn.css">
+</head>
+<body>
+   
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <img src="photo/logo.PNG" alt="Logo" class="logo" height="100px" width="100px">
+            <form id="signupForm" action="/signup" method="POST">
+                <h1>إنشاء حساب</h1>
+                
+                <span>أو استخدم بريدك الإلكتروني للتسجيل</span>
+                <div class="infield">
+                    <input type="text" name="name" placeholder="الاسم" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" name="email" placeholder="البريد الإلكتروني" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" name="password" placeholder="كلمة المرور" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="text" name="phone" placeholder="الهاتف" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="date" name="birthdate" placeholder="تاريخ الميلاد" lang="en" />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <select name="gender" required>
+                        <option value="" disabled selected>الجنس</option>
+                        <option value="Male">ذكر</option>
+                        <option value="Female">أنثى</option>
+                    </select>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="text" name="address" placeholder="العنوان" />
+                    <label></label>
+                </div>
+                <button type="submit">التسجيل</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <img src="photo/logo.PNG" alt="Logo" class="logo" height="100px" width="100px">
+
+            <form id="loginForm">
+                <h1>تسجيل الدخول</h1>
+               
+                <span>أو استخدم حسابك</span>
+                <div class="infield">
+                    <input type="email" placeholder="البريد الإلكتروني" name="email" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" name="password" placeholder="كلمة المرور" required />
+                    <label></label>
+                </div>
+                <a href="#" class="forgot" id="forgotPasswordLink">هل نسيت كلمة المرور؟</a>
+                <button type="submit">تسجيل الدخول</button>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>مرحبًا بعودتك!</h1>
+                    <p>للحفاظ على الاتصال معنا، يرجى تسجيل الدخول بمعلوماتك الشخصية</p>
+                    <button>التسجيل</button>
+                </div>
+                <div class="overlay-panel overlay-left">
+                    <h1>مرحبًا، صديقي!</h1>
+                    <p>أدخل تفاصيلك الشخصية وابدأ رحلتك معنا</p>
+                    <button>تسجيل الدخول</button>
+                </div>
+            </div>
+            <button id="overlayBtn"></button>
+        </div>
+        <div class="form-container forgot-password-container" id="forgotPasswordContainer" style="display: none;">
+            <h1>إعادة تعيين كلمة المرور</h1>
+            <p>أدخل بريدك الإلكتروني وكلمة المرور الجديدة</p>
+            
+            <div class="infield">
+                <input type="email" name="email" id="resetEmail" placeholder="أدخل بريدك الإلكتروني" required />
+            </div>
+            <div class="infield">
+                <input type="tel" name="phone" id="resetPhone" placeholder="أدخل رقم جوالك المسجل" required />
+            </div>
+            <div class="infield">
+                <input type="password" name="password" id="resetPassword" placeholder="أدخل كلمة المرور الجديدة" required />
+            </div>
+            
+            <button id="resetPasswordBtn">إعادة تعيين كلمة المرور</button>
+        <div>
+            <a href="#" id="backToLogin">العودة إلى تسجيل الدخول</a>
+        </div>
+    </div>
+
+
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+            overlayBtn.classList.remove('btnScaled');
+            window.requestAnimationFrame(() => { overlayBtn.classList.add('btnScaled') });
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = {
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        password: document.querySelector('input[name="password"]').value,
+        phone: document.querySelector('input[name="phone"]').value,
+        birthdate: document.querySelector('input[name="birthdate"]').value || null,
+        gender: document.querySelector('select[name="gender"]').value,
+        address: document.querySelector('input[name="address"]').value || null
+    };
+
+    try {
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            window.location.href = '/profilePage.html';
+        } else {
+            const error = await response.json();
+            alert(error.error);
+        }
+    } catch (error) {
+        alert('Network error');
+    }
+});
+    </script>
+    <script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+        email: document.querySelector('#loginForm input[name="email"]').value,
+        password: document.querySelector('#loginForm input[name="password"]').value
+    };
+
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+            credentials: 'include' // لإرسال الكوكيز
+        });
+
+        if (response.ok) {
+            window.location.href = '/profilePage-Ar.html';
+        } else {
+            const error = await response.text();
+            alert(error || 'Login failed');
+        }
+    } catch (error) {
+        alert('Network error');
+    }
+});
+    </script>
+<script>
+    document.getElementById('forgotPasswordLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('forgotPasswordContainer').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block'; // تفعيل التعتيم
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('forgotPasswordContainer').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none'; // إزالة التعتيم
+    });
+
+    document.getElementById('resetPasswordBtn').addEventListener('click', async function () {
+        const email = document.getElementById('resetEmail').value;
+        const password = document.getElementById('resetPassword').value;
+        const phone = document.getElementById('resetPhone').value;
+
+        if (!email || !phone || !password) {
+            alert("يرجى إدخال بريدك الإلكتروني ورقم الجوال وكلمة المرور الجديدة");
+            return;
+        }
+
+        try {
+            const response = await fetch('/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, phone, password })
+            });
+
+            if (response.ok) {
+                alert('تم إعادة تعيين كلمة المرور بنجاح!');
+                document.getElementById('forgotPasswordContainer').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none'; // إزالة التعتيم
+            } else {
+                const error = await response.json();
+                alert(error.message || 'فشل في إعادة تعيين كلمة المرور');
+            }
+        } catch (error) {
+            alert('خطأ في الشبكة');
+        }
+    });
+</script>
+
+<div id="overlay" class="overlay-active" style="display: none;"></div>
+
+</body>
+</html>

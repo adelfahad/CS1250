@@ -9,24 +9,61 @@
             <div class="navbar">
                 <img src="photo/Riyadh_metro_logo.png" class="logo">
                 <ul>
+                    <li><a href="HomePage.html">home</a></li>
+                    <li><a href="Paths.html">Map</a></li>
+                    <li><a href="Stations.html">lines</a></li>
+                    <li><a href="TicketPage.html">tickets</a></li>
                     <li><a href="contact.html">support</a></li>
-                    <li><a href="#">Map</a></li>
-                    <li><a href="TicketPage.html">Tickets</a></li>
-                    <li><a href="#">announcement</a></li>
-                    <li><a href="profilePage.html">Profile</a></li>
-
+                    <li><a href="profilePage.html">profile</a></li>
+                    <li><a href="HomePage-Ar.html">عربي</a></li>
                 </ul>
             </div>
             <div class="content">
                 <h1>RIYADH METRO</h1>
                 <p>Enjoy smooth, comfortable, and reliable transportation with Riyadh Metro
                     <br> the quickest way to travel across the city </p>
-                <div>
-                    <button type="button"><span></span>First Button</button>
-                    <button type="button"><span></span>Second Button</button>
-                </div>
+                    <h2>Announcements</h2>
+                    <table id="announcementsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
             </div>
         </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+const tableBody = document.querySelector('#announcementsTable tbody');
+
+// جلب البيانات من السيرفر
+fetch('http://localhost:3000/api/announcements')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(announcement => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${announcement.id}</td>
+                <td>${announcement.title}</td>
+                <td>${announcement.description}</td>
+                <td>${new Date(announcement.date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        tableBody.innerHTML = `<tr><td colspan="4">Error loading data</td></tr>`;
+    });
+});
+</script>
 
 
     </body>

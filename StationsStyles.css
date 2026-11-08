@@ -1,0 +1,387 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.banner {
+    width: 100%;
+    min-height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(riyadhMetro.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    width: 130px;
+    cursor: pointer;
+}
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li ::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #6fd450;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li :hover:after {
+    width: 100%;
+}
+:root {
+    --primary-color: #228B22; /* Dark Green */
+    --secondary-color: #FFD700; /* Gold */
+    --background-color: #f0f8f0; /* Light Green Background */
+    --text-color: #333;
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* General Fonts */
+/* body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: right;
+    margin: 0;
+    padding: 0;
+} */
+
+/* General Design */
+.container {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 20px;
+    background: none;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+h1, h2 {
+    color: white;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    text-align: left;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Favorite Stations Section */
+.favorites-section {
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+#favorites-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#favorites-list li {
+    padding: 15px;
+    margin: 10px 0;
+    background: #f8f8f86b; 
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#favorites-list li:hover {
+    background-color: #efefef82; /* Change Background Color on Hover */
+}
+
+/* Routes Section */
+.routes-section {
+    margin-top: 20px;
+}
+
+#routes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#routes-list li {
+    padding: 15px;
+    margin: 10px 0;
+    /* background: ; */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#routes-list li:hover {
+    /* background-color: ; Change Background Color on Hover */
+}
+
+.route-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.stations-list {
+    list-style-type: none;
+    color: white;
+    padding: 0;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.stations-list.expanded {
+    max-height: 2000px; /* Adjust based on content */
+}
+
+.stations-list li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f8f86b; /* Light Green Background */
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.stations-list li:hover {
+    background-color: #efefef82; /* Change Background Color on Hover */
+}
+
+.station-name {
+    font-size: 18px;
+    font-weight: bold;
+    width: 200px;
+}
+
+.times {
+    display: flex;
+    gap: 10px;
+}
+
+.time {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    text-align: center;
+}
+
+.time:hover {
+    background-color: #1c7a1c; 
+}
+
+.star {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.star.favorite {
+    color: var(--secondary-color);
+}
+
+.remove-favorite {
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.remove-favorite:hover {
+    color: #ffcc00; /* Lighter Gold on Hover */
+}
+
+/* Button */
+button {
+    background-color: #6fd450;
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5fb943; 
+}
+
+button:active {
+    transform: scale(0.95);
+}
+/* Custom Colors for Each Route */
+
+.blue-line .route-header {
+    background-color: #02ADE5; /* Blue */
+    color: white; /* White Text */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.blue-line .time {
+    background-color: #02ADE5; /* Blue */
+    border: 1px solid #02ADE5; /* Blue Border */
+}
+
+.blue-line .time:hover {
+    background-color: #02ADE5; /* Darker Blue */
+    border-color: #02ADE5; /* Darker Blue Border */
+}
+
+
+.red-line .route-header {
+    background-color: #EF4A37; /* Red */
+    color: white; /* White Text */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.red-line .time {
+    background-color: #EF4A37; /* Red */
+    border: 1px solid #EF4A37; /* Red Border */
+}
+
+.red-line .time:hover {
+    background-color: #EF4A37; /* Darker Red */
+    border-color: #EF4A37; /* Darker Red Border */
+}
+
+.orange-line .route-header {
+    background-color: #F98B3C; 
+    color: white; /* White Text */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.orange-line .time {
+    background-color: #F98B3C; 
+    border: 1px solid #F98B3C; 
+}
+
+.orange-line .time:hover {
+    background-color: #F98B3C; 
+    border-color: #F98B3C; 
+}
+
+.yellow-line .route-header {
+    background-color: #FFCD16; 
+    color: white; /* White Text */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.yellow-line .time {
+    background-color: #FFCD16; 
+    border: 1px solid #FFCD16; 
+}
+
+.yellow-line .time:hover {
+    background-color: #FFCD16; 
+    border-color: #FFCD16; 
+}
+
+.green-line .route-header {
+    background-color: #228B22; 
+    color: white; 
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.green-line .time {
+    background-color: #46B245; 
+    border: 1px solid #46B245; 
+}
+
+.green-line .time:hover {
+    background-color: #46B245; 
+    border-color: #46B245; 
+}
+
+
+.purple-line .route-header {
+    background-color: #954D97; 
+    color: white; /* White Text */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.purple-line .time {
+    background-color: #954D97; 
+    border: 1px solid #954D97; 
+}
+
+.purple-line .time:hover {
+    background-color: #954D97; 
+    border-color: #954D97; 
+}
+
+.favorite-station {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.favorite-station-name {
+    color: rgb(255, 255, 255);
+    width: 200px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.favorite-times {
+    display:flex;
+    gap: 10px;
+}
+
+.favorite-time {
+    background:#6fd450;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.favorite-time:hover {
+    background-color: #5fb943; /* Dark Green on Hover */
+}

@@ -1,0 +1,355 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fare Calculator</title>
+    <link href="photo/logo.ico" rel="icon">
+    <link rel="stylesheet" href="styleHomePage.css">
+    <link rel="stylesheet" href="fareCalculator.css">
+
+</head>
+<style>
+    body {
+        background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(riyadhMetro.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+<body>
+    <div class="navbar" style="background-color: rgba(0, 0, 0,0); margin-left: 0; margin-right: 0;">
+        <img src="photo/Riyadh_metro_logo.png" class="logo">
+        <ul>
+            <li><a href="HomePage.html">home</a></li>
+                    <li><a href="#">Map</a></li>
+                    <li><a href="Stations.html">lines</a></li>
+                    <li><a href="TicketPage.html">tickets</a></li>
+                    <li><a href="contact.html">support</a></li>
+                    <li><a href="profilePage.html">profile</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- Image -->
+        <div style="background-color: white; width: 50%; height: 100%;">
+            <img src="photo/MetroMap_DarkMode.jpg" style="height: 100%; width: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Calculator -->
+        <div style="width: 50%; height: 100%; padding-top: 10%; position: relative; overflow: hidden;"
+            class="calculator-section">
+            <div class="col-md-12" style="z-index: 10;     position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);">
+                <form id="fareForm" action="index.html" method="post" class="calculator-card">
+                    <h1> Fare Calculator </h1>
+
+                    <fieldset>
+                        <legend><span class="number">1</span>Choose your trip</legend>
+
+                        <label for="jobFrom">From:</label>
+                        <select id="jobFrom" name="from_location">
+                            <optgroup label="Yellow Track">
+                                <option value="1">KAFD</option>
+                                <option value="2">Ar Rabi</option>
+                                <option value="3">Uthman Bin Affan Road</option>
+                                <option value="4">Sabic</option>
+                                <option value="5">PNU</option>
+                                <option value="6">Governmental Complex</option>
+                                <option value="7">Airport T5</option>
+                                <option value="8">T3-T4</option>
+                                <option value="9">Airport T1-T2</option>
+                            </optgroup>
+                            <optgroup label="Purple Track">
+                                <option value="1">KAFD</option>
+                                <option value="2">Ar Rabi</option>
+                                <option value="3">Uthman Bin Affan Road</option>
+                                <option value="4">Sabic</option>
+                                <option value="10">Gramadia</option>
+                                <option value="11">Al Yarmuk</option>
+                                <option value="12">Al Hamra</option>
+                                <option value="13">Al Andalus</option>
+                                <option value="14">Khuraiss Road</option>
+                                <option value="15">As Salam</option>
+                                <option value="16">An Naseem</option>
+                            </optgroup>
+                            <optgroup label="Orange Track">
+                                <option value="17">Jeddah Road</option>
+                                <option value="18">Tuwaiq</option>
+                                <option value="19">Ad Douh</option>
+                                <option value="20">Western Station</option>
+                                <option value="21">Aishah bint Abi Bakr Street</option>
+                                <option value="22">Dhahrat Al Badiah</option>
+                                <option value="23">Sultanah</option>
+                                <option value="24">Al Jarradiyah</option>
+                                <option value="25">Courts Complex</option>
+                                <option value="26">Qasr Al Hokm</option>
+                                <option value="27">Al Hilla</option>
+                                <option value="28">Al Margab</option>
+                                <option value="29">As Salhiyah</option>
+                                <option value="30">First Industrial City</option>
+                                <option value="31">Railway</option>
+                                <option value="32">Al Malaz</option>
+                                <option value="33">Jarir District</option>
+                                <option value="34">Al Rajhi Grand Moque</option>
+                                <option value="35">Harun Ar Rashid Road</option>
+                                <option value="16">An Naseem</option>
+                                <option value="36">Hassan Bin Thabit Street</option>
+                                <option value="37">Khashm Al An</option>
+                            </optgroup>
+
+                            <optgroup label="Blue Track">
+                                <option value="38">SABB</option>
+                                <option value="39">Dr Sulaiman Al Haabib</option>
+                                <option value="1">KAFD</option>
+                                <option value="40">Al Murooj</option>
+                                <option value="41">King Fahad District</option>
+                                <option value="42">King Fahad District2</option>
+                                <option value="43">STC</option>
+                                <option value="44">Al Wurud 2</option>
+                                <option value="45">Allnma Bank</option>
+                                <option value="46">Bank Albilad</option>
+                                <option value="47">King Fahad Library</option>
+                                <option value="48">Ministry of Interior</option>
+                                <option value="49">Al Mourabba</option>
+                                <option value="50">Passport Department</option>
+                                <option value="51">National Museum</option>
+                                <option value="52">Al bat'ha</option>
+                                <option value="26">Qasr Al Hokm</option>
+                                <option value="53">Al Owd</option>
+                                <option value="54">Skirinah</option>
+                                <option value="55">Manfouhah</option>
+                                <option value="56">Al Iman Hospital</option>
+                                <option value="57">Transportation Center</option>
+                                <option value="58">Al Aziziah</option>
+                                <option value="59">Ad Dar Al Baida</option>
+                            </optgroup>
+
+                        </select>
+
+                        <label for="jobTo">To:</label>
+                        <select id="jobTo" name="to_location">
+                            <optgroup label="Yellow Track">
+                                <option value="1">KAFD</option>
+                                <option value="2">Ar Rabi</option>
+                                <option value="3">Uthman Bin Affan Road</option>
+                                <option value="4">Sabic</option>
+                                <option value="5">PNU</option>
+                                <option value="6">Governmental Complex</option>
+                                <option value="7">Airport T5</option>
+                                <option value="8">T3-T4</option>
+                                <option value="9">Airport T1-T2</option>
+                            </optgroup>
+                            <optgroup label="Purple Track">
+                                <option value="1">KAFD</option>
+                                <option value="2">Ar Rabi</option>
+                                <option value="3">Uthman Bin Affan Road</option>
+                                <option value="4">Sabic</option>
+                                <option value="10">Gramadia</option>
+                                <option value="11">Al Yarmuk</option>
+                                <option value="12">Al Hamra</option>
+                                <option value="13">Al Andalus</option>
+                                <option value="14">Khuraiss Road</option>
+                                <option value="15">As Salam</option>
+                                <option value="16">An Naseem</option>
+                            </optgroup>
+                            <optgroup label="Orange Track">
+                                <option value="17">Jeddah Road</option>
+                                <option value="18">Tuwaiq</option>
+                                <option value="19">Ad Douh</option>
+                                <option value="20">Western Station</option>
+                                <option value="21">Aishah bint Abi Bakr Street</option>
+                                <option value="22">Dhahrat Al Badiah</option>
+                                <option value="23">Sultanah</option>
+                                <option value="24">Al Jarradiyah</option>
+                                <option value="25">Courts Complex</option>
+                                <option value="26">Qasr Al Hokm</option>
+                                <option value="27">Al Hilla</option>
+                                <option value="28">Al Margab</option>
+                                <option value="29">As Salhiyah</option>
+                                <option value="30">First Industrial City</option>
+                                <option value="31">Railway</option>
+                                <option value="32">Al Malaz</option>
+                                <option value="33">Jarir District</option>
+                                <option value="34">Al Rajhi Grand Moque</option>
+                                <option value="35">Harun Ar Rashid Road</option>
+                                <option value="16">An Naseem</option>
+                                <option value="36">Hassan Bin Thabit Street</option>
+                                <option value="37">Khashm Al An</option>
+                            </optgroup>
+
+                            <optgroup label="Blue Track">
+                                <option value="38">SABB</option>
+                                <option value="39">Dr Sulaiman Al Haabib</option>
+                                <option value="1">KAFD</option>
+                                <option value="40">Al Murooj</option>
+                                <option value="41">King Fahad District</option>
+                                <option value="42">King Fahad District2</option>
+                                <option value="43">STC</option>
+                                <option value="44">Al Wurud 2</option>
+                                <option value="45">Allnma Bank</option>
+                                <option value="46">Bank Albilad</option>
+                                <option value="47">King Fahad Library</option>
+                                <option value="48">Ministry of Interior</option>
+                                <option value="49">Al Mourabba</option>
+                                <option value="50">Passport Department</option>
+                                <option value="51">National Museum</option>
+                                <option value="52">Al bat'ha</option>
+                                <option value="26">Qasr Al Hokm</option>
+                                <option value="53">Al Owd</option>
+                                <option value="54">Skirinah</option>
+                                <option value="55">Manfouhah</option>
+                                <option value="56">Al Iman Hospital</option>
+                                <option value="57">Transportation Center</option>
+                                <option value="58">Al Aziziah</option>
+                                <option value="59">Ad Dar Al Baida</option>
+                            </optgroup>
+                        </select>
+
+                        <legend><span class="number">2</span>Discounts</legend>
+                        <input type="checkbox" id="development" name="student">I am a student<br>
+                        <input type="checkbox" id="design" name="senior">I am a senior<br>
+                        <input type="checkbox" id="business" name="special_needs">I have special needs
+                    </fieldset>
+
+                    <button type="submit">Calculate</button>
+                </form>
+                <div class="result" id="result">
+                    <h3 style="margin-left: auto; margin-right: auto; width: fit-content;" id="price">Total Cost: 12 SAR
+                    </h3>
+                    <h5 style="margin-left: auto; margin-right: auto; width: fit-content; margin-top: 1rem;"
+                        id="distance">Distance: 7 Stations</h5>
+                    <h5 style="margin-left: auto; margin-right: auto; width: fit-content; margin-top: 0.5rem;"
+                        id="discount">Discount: 15%</h5>
+                </div>
+            </div>
+            <div id="particles-js" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+        </div>
+    </div>
+
+    <!-- Include the JavaScript file -->
+    <script src="formValidation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        // Initialize Particle.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 24,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#ffffff"
+                    },
+                    "polygon": {
+                        "nb_sides": 6
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.29987610382026364,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1.038961038961039,
+                        "opacity_min": 0.055944055944055944,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 55.24033491425909,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 1,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+    <script>
+        // Add event listener for form submission
+        document.getElementById('fareForm').addEventListener('submit', handleFormSubmit);
+    </script>
+
+</body>
+
+</html>
