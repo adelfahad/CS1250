@@ -95,6 +95,9 @@
                 <input type="email" name="email" id="resetEmail" placeholder="Enter your email" required />
             </div>
             <div class="infield">
+                <input type="tel" name="phone" id="resetPhone" placeholder="Enter your phone number" required />
+            </div>
+            <div class="infield">
                 <input type="password" name="password" id="resetPassword" placeholder="Enter new password" required />
             </div>
             
@@ -192,9 +195,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     document.getElementById('resetPasswordBtn').addEventListener('click', async function () {
         const email = document.getElementById('resetEmail').value;
         const password = document.getElementById('resetPassword').value;
+        const phone = document.getElementById('resetPhone').value;
 
-        if (!email || !password) {
-            alert("Please enter your email and new password");
+        if (!email || !phone || !password) {
+            alert("Please enter your email, phone number and new password");
             return;
         }
 
@@ -202,7 +206,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             const response = await fetch('/reset-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, phone, password })
             });
 
             if (response.ok) {

@@ -95,6 +95,9 @@
                 <input type="email" name="email" id="resetEmail" placeholder="أدخل بريدك الإلكتروني" required />
             </div>
             <div class="infield">
+                <input type="tel" name="phone" id="resetPhone" placeholder="أدخل رقم جوالك المسجل" required />
+            </div>
+            <div class="infield">
                 <input type="password" name="password" id="resetPassword" placeholder="أدخل كلمة المرور الجديدة" required />
             </div>
             
@@ -191,9 +194,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     document.getElementById('resetPasswordBtn').addEventListener('click', async function () {
         const email = document.getElementById('resetEmail').value;
         const password = document.getElementById('resetPassword').value;
+        const phone = document.getElementById('resetPhone').value;
 
-        if (!email || !password) {
-            alert("يرجى إدخال بريدك الإلكتروني وكلمة المرور الجديدة");
+        if (!email || !phone || !password) {
+            alert("يرجى إدخال بريدك الإلكتروني ورقم الجوال وكلمة المرور الجديدة");
             return;
         }
 
@@ -201,7 +205,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             const response = await fetch('/reset-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, phone, password })
             });
 
             if (response.ok) {

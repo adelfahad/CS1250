@@ -151,7 +151,7 @@ lines.forEach((line) => {
         const stationLines = getLinesForStation(station.name);
         const marker = L.marker(station.coords, {icon: customIcon}).addTo(map);
         marker.bindPopup(`<b>${station.name}</b><button onclick="goToStationInfo('${station.name}')" style="margin-top: 5px; background: none; border: none; cursor: pointer;">
-        <img src="Pics/!-icon.png" alt="Info" style="width: 15px; height: 15px;"/></button><br><strong>Lines:</strong> ${stationLines.join(", ")}`);
+        <img src="photo/!-icon.png" alt="Info" style="width: 15px; height: 15px;"/></button><br><strong>Lines:</strong> ${stationLines.join(", ")}`);
     });
 });
 function goToStationInfo(stationName) {
@@ -164,22 +164,22 @@ function goToStationInfo(stationName) {
     // Redirect to the corresponding page based on the line
     switch (lineName) {
         case '1(Blue)':
-            window.location.href = `http://127.0.0.1:5500/Stations.html`;
+            window.location.href = `Stations.html`;
             break;
         case '3(Orange)':
-            window.location.href = `http://127.0.0.1:5500/Stations.html`;
+            window.location.href = `Stations.html`;
             break;
         case '5(Green)':
-            window.location.href = `http://127.0.0.1:5500/Stations.html`;
+            window.location.href = `Stations.html`;
             break;
         case '6(Purple)':
-            window.location.href = `http://127.0.0.1:5500/Stations.html`;
+            window.location.href = `Stations.html`;
             break;
         case '4(Yellow)':
-            window.location.href = `http://127.0.0.1:5500/Stations.html`;
+            window.location.href = `Stations.html`;
             break;
         case '2(Red)':
-            window.location.href = `http://127.0.0.1:5500/Stations.html`;
+            window.location.href = `Stations.html`;
             break;
         default:
             console.log('Line not found for station.');
