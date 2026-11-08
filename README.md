@@ -68,7 +68,7 @@ API endpoints:
 - `POST /display-ticket` – renders a ticket page with the barcode image.
 - `POST /contact` – saves a contact message to the `contacts` table.
 
-Libraries used: `express`, `body-parser`, `mysql`, `cors`, `uuid`, `bwip-js`.
+Libraries used: `express`, `mysql`, `cors`, `uuid`, `bwip-js`.
 
 ### Database
 

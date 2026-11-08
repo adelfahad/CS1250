@@ -1,21 +1,20 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 const bwipjs = require('bwip-js');
 
 const app = express();
+const PUBLIC_DIR = path.join(__dirname, '..'); // مجلد المشروع اللي فيه صفحات HTML
 
-
+app.disable('x-powered-by');
 app.use(cors());
+app.use(express.json());
 
-
-app.use(bodyParser.json());
-
-
-app.use(express.static(path.join(__dirname, '../../CS1250')));
+// منع الوصول لملفات السيرفر (server.js, package.json, .env) من المتصفح
+app.use('/Server', (req, res) => res.sendStatus(404));
+app.use(express.static(PUBLIC_DIR, { dotfiles: 'deny' }));
 
 // بيانات قاعدة البيانات تنقرأ من ملف Server/.env (غير مرفوع على GitHub)
 try {
@@ -50,7 +49,7 @@ app.post('/generate-ticket', (req, res) => {
         return res.status(400).json({ error: 'Missing ticket data' });
     }
 
-    const validClasses = ['VIP', 'Normal', 'First-class', 'Regular'];
+    const validClasses = ['First-class', 'Regular'];
     if (!validClasses.includes(ticketClass)) {
         console.error('Invalid class value:', ticketClass);
         return res.status(400).json({ error: 'Invalid class value' });
@@ -59,16 +58,17 @@ app.post('/generate-ticket', (req, res) => {
     const newBarcode = uuidv4();
     const currentDate = new Date();
     const startTime = currentDate.toISOString().slice(0, 19).replace('T', ' '); 
-    const validHours = parseInt(duration.split('-')[0]);
+    // "2-hour pass" => 2 ساعات، "3-day pass" => 72 ساعة
+    const match = /^(\d+)-(hour|day)/.exec(String(duration));
+    if (!match) {
+        console.error('Invalid duration value:', duration);
+        return res.status(400).json({ error: 'Invalid duration value' });
+    }
+    const validHours = Number(match[1]) * (match[2] === 'day' ? 24 : 1);
     const endTime = new Date(currentDate.getTime() + validHours * 60 * 60 * 1000)
         .toISOString()
         .slice(0, 19)
         .replace('T', ' ');
-
-    if (isNaN(validHours)) {
-        console.error('Invalid duration value:', duration);
-        return res.status(400).json({ error: 'Invalid duration value' });
-    }
 
     bwipjs.toBuffer(
         {
@@ -91,7 +91,7 @@ app.post('/generate-ticket', (req, res) => {
                 INSERT INTO tickets (ticket_date, hours, class, start_time, end_time, barcode)
                 VALUES (NOW(), ?, ?, ?, ?, ?)
             `;
-            db.query(query, [validHours, ticketClass, startTime, endTime, newBarcode], (err, result) => {
+            db.query(query, [validHours, ticketClass, startTime, endTime, newBarcode], (err) => {
                 if (err) {
                     console.error('Error inserting ticket into database:', err);
                     return res.status(500).json({ error: 'Failed to save ticket in database' });
@@ -113,7 +113,11 @@ app.post('/generate-ticket', (req, res) => {
 app.post('/display-ticket', (req, res) => {
     const { barcodeBase64, price, ticketClass } = req.body;
 
-    if (!barcodeBase64 || !price || !ticketClass) {
+    // التحقق من البيانات قبل وضعها في الصفحة (حماية من XSS)
+    const validClasses = ['First-class', 'Regular'];
+    const isBase64 = typeof barcodeBase64 === 'string' && /^[A-Za-z0-9+/]+={0,2}$/.test(barcodeBase64);
+    const priceNumber = Number(price);
+    if (!isBase64 || !validClasses.includes(ticketClass) || !Number.isFinite(priceNumber) || priceNumber <= 0) {
         return res.status(400).send('Invalid data received');
     }
 
@@ -138,32 +142,23 @@ app.post('/display-ticket', (req, res) => {
         </head>
         <body>
             <h1>Your Ticket</h1>
-            <p>Class: ${ticketClass}, Price: SAR ${price}</p>
+            <p>Class: ${ticketClass}, Price: SAR ${priceNumber}</p>
             <img src="data:image/png;base64,${barcodeBase64}" alt="Barcode">
         </body>
         </html>
     `);
 });
 
-app.get('/contact.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../CS1250', 'contact.html'));  // إرسال contact.html
-});
-
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../CS1250', 'index.html'));  // إرسال index.html
-});
-
-app.get('/about.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../CS1250', 'about.html'));  // إرسال about.html
-});
-
 app.post('/contact', (req, res) => {
     const { firstName, lastName, email, mobile, message } = req.body;
 
-    const query = 'INSERT INTO contacts (first_name, last_name, email, mobile, message) VALUES (?, ?, ?, ?, ?)';  // تعديل اسم الجدول هنا
+    const query = 'INSERT INTO contacts (first_name, last_name, email, mobile, message) VALUES (?, ?, ?, ?, ?)';
 
-    db.query(query, [firstName, lastName, email, mobile, message], (err, result) => {
+    if (!firstName || !lastName || !email || !mobile || !message) {
+        return res.status(400).send('Missing contact data');
+    }
+
+    db.query(query, [firstName, lastName, email, mobile, message], (err) => {
         if (err) {
             console.error('Error inserting data:', err);
             return res.status(500).send('Error saving message');
