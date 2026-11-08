@@ -1,0 +1,1036 @@
+<html>
+    <head>
+        <title>مترو الرياض</title>
+        <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+        <link rel="stylesheet" href="StationsStyles.css">
+    </head>
+    <body>
+        <div class="banner">
+            <div class="navbar">
+                <img src="photo/Riyadh_metro_logo.png" class="logo">
+                <ul>
+                    <li><a href="HomePage-Ar.html">الرئيسية</a></li>
+                    <li><a href="Paths-Ar.html">الخريطة</a></li>
+                    <li><a href="Stations-Ar.html">الخطوط</a></li>
+                    <li><a href="TicketPage-Ar.html">التذاكر</a></li>
+                    <li><a href="contact-Ar.html">الدعم</a></li>
+                    <li><a href="profilePage-Ar.html">الملف الشخصي</a></li>
+                    <li><a href="Stations.html">English</a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <h1>محطات المترو</h1>
+        
+                <!-- Favorite Stations Section -->
+                <div class="favorites-section">
+                    <h2>المحطات المفضلة</h2>
+                    <ul id="favorites-list"></ul>
+                    <button id="clear-favorites">مسح جميع المحطات المفضلة</button>
+                </div>
+        
+                <!-- Routes Section -->
+                <div class="routes-section">
+                    <h2>الخطوط والمحطات</h2>
+                    <ul id="routes-list">
+                        <!-- Blue Line -->
+                        <li data-route="1" class="blue-line">
+                            <div class="route-header">
+                                <span>الخط الأزرق</span>
+                            </div>
+                            <ul class="stations-list">
+                                <li data-id="1">
+                                    <span class="station-name">محطة بنك الأول</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="2">
+                                    <span class="station-name">محطة د. سليمان الحبيب</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="100">
+                                    <span class="station-name">محطة المدينة المالية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="4">
+                                    <span class="station-name">محطة المروج</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="5">
+                                    <span class="station-name">محطة حي الملك فهد</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="6">
+                                    <span class="station-name">محطة حي الملك فهد 2</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="104">
+                                    <span class="station-name">محطة الاتصالات السعودية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="8">
+                                    <span class="station-name">محطة الورود 2</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="9">
+                                    <span class="station-name">محطة العروبة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="10">
+                                    <span class="station-name">محطة بنك الإنماء</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="11">
+                                    <span class="station-name">محطة بنك البلاد</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="12">
+                                    <span class="station-name">محطة مكتبة الملك فهد</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="13">
+                                    <span class="station-name">محطة وزارة الداخلية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="14">
+                                    <span class="station-name">محطة المربع</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="15">
+                                    <span class="station-name">محطة الجوازات</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="107">
+                                    <span class="station-name">محطة المتحف الوطني</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="17">
+                                    <span class="station-name">محطة البطحاء</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="108">
+                                    <span class="station-name">محطة قصر الحكم</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="19">
+                                    <span class="station-name">محطة العود</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="20">
+                                    <span class="station-name">محطة السكرانة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="21">
+                                    <span class="station-name">محطة منفوحة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="22">
+                                    <span class="station-name">محطة مستشفى الإمام</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="23">
+                                    <span class="station-name">محطة مركز النقل العام</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="24">
+                                    <span class="station-name">محطة العزيزية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="25">
+                                    <span class="station-name">محطة الدار البيضاء</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Red Line -->
+                        <li data-route="2" class="red-line">
+                            <div class="route-header">
+                                <span>الخط الأحمر</span>
+                            </div>
+                            <ul class="stations-list">
+                                <li data-id="26">
+                                    <span class="station-name">محطة جامعة الملك سعود</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="27">
+                                    <span class="station-name">محطة واحة الملك سلمان</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="28">
+                                    <span class="station-name">محطة المدينة التقنية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="29">
+                                    <span class="station-name">محطة التخصصي</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="105">
+                                    <span class="station-name">محطة الاتصالات السعودية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="31">
+                                    <span class="station-name">محطة الورود</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="32">
+                                    <span class="station-name">محطة طريق الملك عبدالعزيز</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="105">
+                                    <span class="station-name">محطة وزارة التعليم</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="34">
+                                    <span class="station-name">محطة النزهة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="35">
+                                    <span class="station-name">محطة مركز الرياض للمعارض</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="36">
+                                    <span class="station-name">محطة طريق خالد بن الوليد</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="106">
+                                    <span class="station-name">محطة الحمرا</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="38">
+                                    <span class="station-name">محطة الخليج</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="39">
+                                    <span class="station-name">محطة إشبيلية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="40">
+                                    <span class="station-name">محطة مدينة الملك فهد الرياضية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Orange Line -->
+                        <li data-route="3" class="orange-line">
+                            <div class="route-header">
+                                <span>الخط البرتقالي</span>
+                            </div>
+                            <ul class="stations-list">
+                                <li data-id="42">
+                                    <span class="station-name">محطة طريق جدة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="43">
+                                    <span class="station-name">محطة طويق</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="44">
+                                    <span class="station-name">محطة الضوح</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="45">
+                                    <span class="station-name">محطة الغربية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="46">
+                                    <span class="station-name">محطة شارع عائشة بنت أبي بكر</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                       
+                                <li data-id="47">
+                                    <span class="station-name">محطة ظهرة البادية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="48">
+                                    <span class="station-name">محطة سلطانة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="49">
+                                    <span class="station-name">محطة الجرادية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="50">
+                                    <span class="station-name">محطة مجمع المحاكم</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="108">
+                                    <span class="station-name">محطة قصر الحكم</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="52">
+                                    <span class="station-name">محطة الحلة</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="53">
+                                    <span class="station-name">محطة المرقب</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="54">
+                                    <span class="station-name">محطة الصالحية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="55">
+                                    <span class="station-name">محطة المدينة الصناعية الأولى</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="56">
+                                    <span class="station-name">محطة السكة الحديد</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="57">
+                                    <span class="station-name">محطة الملز</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="58">
+                                    <span class="station-name">محطة حي جرير</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="59">
+                                    <span class="station-name">محطة جامع الراجحي الكبير</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="60">
+                                    <span class="station-name">محطة طريق هارون الرشيد</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="109">
+                                    <span class="station-name">محطة النسيم</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="62">
+                                    <span class="station-name">محطة شارع حسان بن ثابت</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="63">
+                                    <span class="station-name">محطة خشم العان</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+                        <ul id="routes-list">
+                            <!-- Yellow Line -->
+                            <li data-route="4" class="yellow-line">
+                                <div class="route-header">
+                                    <span>الخط الأصفر</span>
+                                </div>
+                                <ul class="stations-list">
+                                    <li data-id="100">
+                                        <span class="station-name">محطة المدينة المالية</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="101">
+                                        <span class="station-name">محطة الربيع</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="102">
+                                        <span class="station-name">محطة طريق عثمان بن عفان</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="103">
+                                        <span class="station-name">محطة سابك</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="68">
+                                        <span class="station-name">محطة جامعة الأميرة نورة 1</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="69">
+                                        <span class="station-name">محطة جامعة الأميرة نورة 2</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="70">
+                                        <span class="station-name">محطة المبنى 5</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="71">
+                                        <span class="station-name">محطة المبنى 3-4</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="72">
+                                        <span class="station-name">محطة المبنى 1-2</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                    </ul>
+                    <ul id="routes-list">
+                        <!-- green Line -->
+                        <li data-route="5" class="green-line">
+                            <div class="route-header">
+                                <span>الخط الأخضر</span>
+                            </div>
+                            <ul class="stations-list">
+                                <li data-id="105">
+                                    <span class="station-name">محطة وزارة التعليم</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="73">
+                                    <span class="station-name">محطة حديقة الملك سلمان</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="74">
+                                    <span class="station-name">محطة السليمانية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="75">
+                                    <span class="station-name">محطة الدباب</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="76">
+                                    <span class="station-name">محطة ساحة أبوظبي</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="77">
+                                    <span class="station-name">محطة نادي الضباط</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="78">
+                                    <span class="station-name">محطة التأمينات الاجتماعية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="79">
+                                    <span class="station-name">محطة الوزارات</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="80">
+                                    <span class="station-name">محطة وزارة الدفاع</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="81">
+                                    <span class="station-name">محطة مستشفى الملك عبدالعزيز</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="82">
+                                    <span class="station-name">محطة وزارة المالية</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                                <li data-id="107">
+                                    <span class="station-name">محطة المتحف الوطني</span>
+                                    <div class="times">
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                        <span class="time"></span>
+                                    </div>
+                                    <span class="star">☆</span>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                </ul>
+                
+                        <ul id="routes-list">
+                            <!-- purple Line -->
+                            <li data-route="6" class="purple-line">
+                                <div class="route-header">
+                                    <span>الخط البنفسجي</span>
+                                </div>
+                                <ul class="stations-list">
+                                    <li data-id="100">
+                                        <span class="station-name">محطة المدينة المالية</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="101">
+                                        <span class="station-name">محطة الربيع</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="102">
+                                        <span class="station-name">محطة طريق عثمان بن عفان</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="103">
+                                        <span class="station-name">محطة سابك</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="89">
+                                        <span class="station-name">محطة غرناطة</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="90">
+                                        <span class="station-name">محطة اليرموك</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="91">
+                                        <span class="station-name">محطة الحمرا</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="92">
+                                        <span class="station-name">محطة الأندلس</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="93">
+                                        <span class="station-name">محطة طريق خريص</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="94">
+                                        <span class="station-name">محطة السلام</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                    <li data-id="95">
+                                        <span class="station-name">محطةالنسيم</span>
+                                        <div class="times">
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                            <span class="time"></span>
+                                        </div>
+                                        <span class="star">☆</span>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        
+            <script src="StationsScript-Ar.js"></script>
+            </body>

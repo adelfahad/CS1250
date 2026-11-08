@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مترو الرياض - خيارات التذاكر</title>
+    <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('riyadhMetro.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #FFF;
+        }
+
+        .navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+        }
+    .logo {
+    width: 130px;
+    cursor: pointer;
+}
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li ::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #6fd450;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li :hover:after {
+    width: 100%;
+}
+        .navbar img {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+        .navbar ul li a:hover {
+            color: #6fd450;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #FFF;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #d0bc84;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            text-decoration: none;
+        }
+
+        .card.regular {
+            background-color: #e8f5e9;
+            color: #2d2626;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .toggle-label input {
+            margin-right: 10px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <img src="photo/Riyadh_metro_logo.png" class="logo">
+            <ul>
+                <li><a href="HomePage-Ar.html">الرئيسية</a></li>
+                <li><a href="Paths-Ar.html">الخريطة</a></li>
+                <li><a href="Stations-Ar.html">الخطوط</a></li>
+                <li><a href="TicketPage-Ar.html">التذاكر</a></li>
+                <li><a href="contact-Ar.html">الدعم</a></li>
+                <li><a href="profilePage-Ar.html">الملف الشخصي</a></li>
+                <li><a href="TicketPage.html">English</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+        <h1>خيارات التذاكر</h1>
+        
+        <div id="page1" class="page">
+            <h2>الدرجة الأولى:</h2>
+            <div class="card-container">
+            <button class="card" onclick="createTicket('First-class', 10, '2-hour pass', 2)">
+            <h3>10 ريال سعودي</h3>
+            <p>تصريح لمدة ساعتين</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 50, '3-day pass', 72)">
+            <h3>50 ريال سعودي</h3>
+            <p>تصريح لمدة 3 أيام</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 100, '7-day pass', 168)">
+            <h3>100 ريال سعودي</h3>
+            <p>تصريح لمدة 7 أيام</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 350, '30-day pass', 720)">
+            <h3>350 ريال سعودي</h3>
+            <p>تصريح لمدة 30 يومًا</p>
+            </button>
+            </div>
+        
+            <h2>العادية:</h2>
+            <div class="card-container">
+            <button class="card regular" onclick="createTicket('Regular', 4, '2-hour pass', 2)">
+            <h3>4 ريال سعودي</h3>
+            <p>تصريح لمدة ساعتين</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 20, '3-day pass', 72)">
+            <h3>20 ريال سعودي</h3>
+            <p>تصريح لمدة 3 أيام</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 40, '7-day pass', 168)">
+            <h3>40 ريال سعودي</h3>
+            <p>تصريح لمدة 7 أيام</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 140, '30-day pass', 720)">
+            <h3>140 ريال سعودي</h3>
+            <p>تصريح لمدة 30 يومًا</p>
+            </button>
+            </div>
+        </div>
+        
+        <div id="page2" class="page" style="display: none;">
+            <h2>الدرجة الأولى:</h2>
+            <div class="card-container">
+            <button class="card" onclick="createTicket('First-class', 5, '2-hour pass', 2)">
+            <h3>5 ريال سعودي</h3>
+            <p>تصريح لمدة ساعتين</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 25, '3-day pass', 72)">
+            <h3>25 ريال سعودي</h3>
+            <p>تصريح لمدة 3 أيام</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 50, '7-day pass', 168)">
+            <h3>50 ريال سعودي</h3>
+            <p>تصريح لمدة 7 أيام</p>
+            </button>
+            <button class="card" onclick="createTicket('First-class', 175, '30-day pass', 720)">
+            <h3>175 ريال سعودي</h3>
+            <p>تصريح لمدة 30 يومًا</p>
+            </button>
+            </div>
+        
+            <h2>العادية:</h2>
+            <div class="card-container">
+            <button class="card regular" onclick="createTicket('Regular', 2, '2-hour pass', 2)">
+            <h3>2 ريال سعودي</h3>
+            <p>تصريح لمدة ساعتين</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 10, '3-day pass', 72)">
+            <h3>10 ريال سعودي</h3>
+            <p>تصريح لمدة 3 أيام</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 20, '7-day pass', 168)">
+            <h3>20 ريال سعودي</h3>
+            <p>تصريح لمدة 7 أيام</p>
+            </button>
+            <button class="card regular" onclick="createTicket('Regular', 70, '30-day pass', 720)">
+            <h3>70 ريال سعودي</h3>
+            <p>تصريح لمدة 30 يومًا</p>
+            </button>
+            </div>
+        </div>
+
+
+        <label class="toggle-label">
+            <input type="checkbox" id="toggleCheckbox" onclick="togglePage()">
+            أكبر من 65 سنة او طالب
+        </label>
+        <div style="margin-top: 20px;">
+            <label>
+        </div>
+    </div>
+    
+    <script>
+        function togglePage() {
+            let page1 = document.getElementById("page1");
+            let page2 = document.getElementById("page2");
+    
+            if (page1.style.display === "none") {
+                page1.style.display = "block";
+                page2.style.display = "none";
+            } else {
+                page1.style.display = "none";
+                page2.style.display = "block";
+            }
+        }
+    </script>
+    <script>
+function createTicket(ticketClass, price, duration, hours) {
+    const ticketData = { class: ticketClass, price: price, duration: duration, hours: hours };
+
+    fetch('http://localhost:3000/generate-ticket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // ✅ يضمن إرسال الكوكيز لجلب الـ session
+        body: JSON.stringify(ticketData),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            return response.json().then(err => { throw new Error(err.error || 'Failed to create ticket'); });
+        }
+        return response.json();
+    })
+    .then((data) => {
+        if (data.barcode) {
+            // ✅ إرسال البيانات لعرض صفحة التذكرة
+            fetch('http://localhost:3000/display-ticket', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    barcodeBase64: data.imageBase64,
+                    price: price,
+                    ticketClass: ticketClass,
+                }),
+            })
+            .then((res) => res.text())
+            .then((html) => {
+                // ✅ عرض صفحة التذكرة
+                document.write(html);
+            });
+        } else {
+            alert('Failed to create ticket. Try again.');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert(error.message); // ✅ عرض الخطأ للمستخدم
+    });
+}
+    </script>
+</body>
+</html>
+</div>

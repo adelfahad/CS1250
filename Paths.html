@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>map</title>
+        <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+        <link rel="stylesheet" href="RiyadhMetro.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="RiyadhMetro.js"></script>
+        <link href="https://www.riyadhbus.sa/o/rcrc-theme/images/favicon.ico" rel="icon">
+    </head>
+    <body>
+        <div class="banner">
+            <div class="navbar">
+                <img src="photo/Riyadh_metro_logo.png" class="logo">
+                <ul>
+                    <li><a href="HomePage.html">Home</a></li>
+                    <li><a href="Stations.html">Lines</a></li>
+                    <li><a href="TicketPage.html">Tickets</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                    <li><a href="profilePage.html">Profile</a></li>
+                    <li><a href="Paths-Ar.html">عربي</a></li>
+                </ul>
+            </div>
+        <main>
+            <div id="trip-planner-container" style="display: flex;">
+    <!-- Trip Planner Form -->
+    <div id="trip-planner" style="padding: 10px; background-color: rgba(194,194,194,0.713); border-radius: 20px; margin-right: 70px; width: 300px;">
+        <h3 style="color: rgba(0,0,0,0.0.1); font-weight: bold; font-size: 25px;">Make your plan <button id="info-button" style="top: 10px; right: 10px; background: transparent; border: none; cursor: pointer;">
+        
+        </button></h3>
+        
+
+    <!-- Info Box (Initially Hidden) -->
+    <div id="info-box" style="font-size: 15px; display: none; top: 50px; right: 10px; background: white; padding: 5px; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 5px; z-index: 1000;">
+        <p>You can see the map to find the closest stations to your location and your destination, and figure out on which lines they're. 
+            Then you can select them below.</p>
+    </div>
+        <!-- Line Selection for Departure -->
+        <div style="margin-bottom: 20px;">
+            <label for="departure-line" style="font-weight: bold; font-size: 30px;">Departure Line:</label>
+            <select id="departure-line" style="width: 100%; padding: 5px; margin-top: 5px;  border-radius: 5px; font-size: 16px; font-weight: bold;">
+                <option value="" disabled selected>Select a line</option>
+                <option value="line1">Line 1 (Blue)</option>
+                <option value="line2">Line 2 (Red)</option>
+                <option value="line3">Line 3 (Orange)</option>
+                <option value="line4">Line 4 (Yellow)</option>
+                <option value="line5">Line 5 (Green)</option>
+                <option value="line6">Line 6 (Purple)</option>
+            </select>
+        </div>
+
+        <!-- Departure Station Selection -->
+        <div style="margin-bottom: 20px;">
+            <label for="departure" style="font-weight: bold; font-size: 30px;">Choose Departure:</label>
+            <select id="departure" style="width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; font-size: 16px; font-weight: bold;" disabled>
+                <option value="" disabled selected>Select departure station</option>
+            </select>
+        </div>
+
+        <!-- Line Selection for Destination -->
+        <div style="margin-bottom: 20px;">
+            <label for="destination-line" style="font-weight: bold; font-size: 30px;">Destination Line:</label>
+            <select id="destination-line" style="width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; font-size: 16px; font-weight: bold;">
+                <option value="" disabled selected>Select a line</option>
+                <option value="line1">Line 1 (Blue)</option>
+                <option value="line2">Line 2 (Red)</option>
+                <option value="line3">Line 3 (Orange)</option>
+                <option value="line4">Line 4 (Yellow)</option>
+                <option value="line5">Line 5 (Green)</option>
+                <option value="line6">Line 6 (Purple)</option>
+            </select>
+        </div>
+
+        <!-- Destination Station Selection -->
+        <div style="margin-bottom: 20px;">
+            <label for="destination" style="font-weight: bold; font-size: 30px;">Choose Destination:</label>
+            <select id="destination" style="width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; font-size: 16px; font-weight: bold;" disabled>
+                <option value="" disabled selected>Select destination station</option>
+            </select>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button id="plan-trip" style="padding: 10px 20px; border: none; background-color: #6fd450; color: white; border-radius: 5px; cursor: pointer;">Make a plan</button>
+            <button id="reset-trip" style="padding: 10px 20px; border: none; background-color: #ddd; border-radius: 5px; cursor: pointer;">Reset</button>
+        </div>
+    </div>
+        <div id="map" style="height: 850px; width: 1400px; margin-left: 30px; border-radius: 20px;"></div>
+        </div>
+        </main>
+        
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="map.js"></script>
+        <video style="    display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;" src="Pics/moving-metro.mp4" autoplay="" muted="" loop=""></video>
+    </body>
+</html>
